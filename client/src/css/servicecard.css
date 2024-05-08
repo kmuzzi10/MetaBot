@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+
+.service-card {
+  background-color: #fffbfb;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  color: rgb(0, 0, 0);
+  width: 100%; /* Ensure each card takes full width */
+  max-width: 300px; /* Limit maximum width of each card */
+  max-height: 500px; /* Limit maximum width of each card */
+  margin: 0 auto; /* Center the cards */
+  margin-bottom: 20px; /* Add some space between cards */
+  font-family: 'Ubuntu', sans-serif; /* Apply Ubuntu font */
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-image-container {
+  overflow: hidden;
+}
+
+.card-image {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover .card-image {
+  transform: scale(1.05);
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  font-size: 16px;
+  line-height: 1.6;
+  overflow: hidden;
+}
+
+.card-text.expanded {
+  overflow: visible;
+}
+
+.see-more {
+  color: rgb(12, 12, 209);
+  cursor: pointer;
+}
