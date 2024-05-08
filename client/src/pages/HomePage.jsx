@@ -108,7 +108,7 @@ const HomePage = () => {
               {cards.map((a, index) => (
                 <div key={index} className="col-lg-4 col-md-4 col-sm-12 mb-3">
                   <Cards
-                    image={a.image}
+                    image={`${process.env.REACT_APP_API}/api/v1/service-cards/card-photo/${a._id}`}
                     title={a.title}
                     text={a.text}
                     style={{ margin: '0 5px', padding: '10px' }}

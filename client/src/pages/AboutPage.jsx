@@ -85,7 +85,7 @@ const AboutPage = () => {
         <div className="row about-cards-row">
           {cards.map((a, index) => (
             <div key={index} className="col-lg-4 col-md-4 col-sm-12 section-4-container-row mb-3">
-              <AboutServiceCards image={a.image} title={a.title} text={a.text} style={{ margin: '0 5px', padding: '10px' }} />
+              <AboutServiceCards image={`${process.env.REACT_APP_API}/api/v1/cards/card-photo/${a._id}`} title={a.title} text={a.text} style={{ margin: '0 5px', padding: '10px' }} />
             </div>
           ))}
         </div>
@@ -125,7 +125,7 @@ const AboutPage = () => {
         <div className="row">
           {newsCards.map((a, index) => (
             <div key={index} className="col-lg-6 col-md-12 col-sm-12">
-              <NewsCards image={a.image} text={a.text} title={a.title} />
+              <NewsCards image={`${process.env.REACT_APP_API}/api/v1/news-cards/card-photo/${a._id}`} text={a.text} title={a.title} />
             </div>
           ))}
         </div>

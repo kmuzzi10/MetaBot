@@ -1,12 +1,13 @@
 import express from "express"
-import { createCardController, deleteCardController, getCardsController, getSingleCardsController, updateCardController } from "../controllers/CardController.js";
-import { upload } from "../Middlewares/upload.js";
+import { cardPhotoController, createCardController, deleteCardController, getCardsController, getSingleCardsController, updateCardController } from "../controllers/CardController.js";
+// import { upload } from "../Middlewares/upload.js";
+import formidable from "express-formidable";
 
 const router = express.Router();
 
 
 //post card details
-router.post('/create-card',upload.single('image'),createCardController)
+router.post('/create-card',formidable(),createCardController)
 
 //get cards details
 router.get('/get-cards',getCardsController)
@@ -17,10 +18,15 @@ router.get('/get-cards/:id',getSingleCardsController)
 
 //update cards controller
 
-router.put('/update-cards/:id',upload.single('image'),updateCardController)
+router.put('/update-cards/:id',formidable(),updateCardController)
 
 
 //delete cards controller
 router.delete('/delete-cards/:id',deleteCardController)
+
+
+//get photo
+
+router.get('/card-photo/:id', cardPhotoController)
 
 export default router;

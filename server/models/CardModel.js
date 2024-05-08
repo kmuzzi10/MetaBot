@@ -7,7 +7,8 @@ const cardSchema = new mongoose.Schema({
         unique: true
     },
     image: {
-        type: String
+        data: Buffer,
+        contentType: String
     },
     title: {
         type: String

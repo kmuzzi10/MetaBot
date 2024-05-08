@@ -11,7 +11,7 @@ const AllProjects = () => {
 
   const gettingNewsCards = async () => {
     try {
-        const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/news-cards/get-cards`);
+        const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/project-cards/get-cards`);
         if (data?.success) {
             // Sirf 6 cards ko slice karo
             const limitedCards = data?.cardsData;
@@ -36,7 +36,7 @@ const AllProjects = () => {
           <div className='row'>
             {projectCards.map((a, index) => (
               <div key={index} className="col-lg-6 col-md-4 col-sm-12 mb-3">
-                <ProjectCards image={a.image} title={a.title} text={a.text} style={{ margin: '0 5px', padding: '10px' }} />
+                <ProjectCards image={`${process.env.REACT_APP_API}/api/v1/project-cards/card-photo/${a._id}`} title={a.title} text={a.text} style={{ margin: '0 5px', padding: '10px' }} />
               </div>
             ))}
           </div>

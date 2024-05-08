@@ -42,7 +42,7 @@ const GetNewsCard = () => {
                                 <div key={p._id} className='col-xl-4 col-lg-4 col-md-6 col-sm-12'>
                                     <Link to={`/dashboard-admin/update-news-card/${p._id}`} className='card-link'>
                                         <div className="card m-3" style={{ width: '100%' }}>
-                                            <img src={p.image} className="card-img-top" alt={p.title} />
+                                            <img src={`${process.env.REACT_APP_API}/api/v1/news-cards/card-photo/${p._id}`} className="card-img-top" alt={p.title} />
                                             <div className="card-body" style={{ maxHeight: '200px', overflow: 'auto' }}>
                                                 <h5 className="card-title">{p.title}</h5>
                                                 <p className="card-text">{p.text}</p>

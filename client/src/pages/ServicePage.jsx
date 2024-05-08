@@ -99,7 +99,7 @@ const ServicePage = () => {
         <div className='row'>
           {cards.map((card, index) => (
             <div key={index} className="col-lg-4 col-md-4 col-sm-12 mb-3">
-              <ServiceCard image={card.image} title={card.title} text={card.text} style={{ margin: '0 5px', padding: '10px' }} />
+              <ServiceCard image={`${process.env.REACT_APP_API}/api/v1/cards/card-photo/${card._id}`} title={card.title} text={card.text} style={{ margin: '0 5px', padding: '10px' }} />
             </div>
           ))}
         </div>
@@ -112,7 +112,7 @@ const ServicePage = () => {
         <div className='row'>
           {projectCards.map((projectCard, index) => (
             <div key={index} className="col-lg-6 col-md-4 col-sm-12 mb-3">
-              <ProjectCards image={projectCard.image} title={projectCard.title} text={projectCard.text} style={{ margin: '0 5px', padding: '10px' }} />
+              <ProjectCards image={`${process.env.REACT_APP_API}/api/v1/project-cards/card-photo/${projectCard._id}`} title={projectCard.title} text={projectCard.text} style={{ margin: '0 5px', padding: '10px' }} />
             </div>
           ))}
         </div>
@@ -149,7 +149,7 @@ const ServicePage = () => {
         <div className='row'>
           {trainingCards.map((card, index) => (
             <div key={index} className="col-lg-4 col-md-4 col-sm-12 mb-3">
-              <ServiceCard image={card.image} title={card.title} text={card.text} style={{ margin: '0 5px', padding: '10px' }} />
+              <ServiceCard image={`${process.env.REACT_APP_API}/api/v1/training-cards/card-photo/${card._id}`} title={card.title} text={card.text} style={{ margin: '0 5px', padding: '10px' }} />
             </div>
           ))}
         </div>
