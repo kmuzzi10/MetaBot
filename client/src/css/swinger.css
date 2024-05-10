@@ -145,9 +145,15 @@ td {
     color: rgba(255, 255, 255, 0.8);
     transition: color 0.3s; /* Smooth transition for icon color */
 }
-
+.project-heading{
+    font-size: 5.3rem;
+    font-family: 'Times New Roman', Times, serif;
+}
 @media (max-width: 786px) {
     .projectFactsWrap .item {
         flex: 0 0 calc(50% - 40px); /* Each item occupies 50% width with margin */
+    }
+    .project-heading{
+        font-size: 2.3rem;
     }
 }

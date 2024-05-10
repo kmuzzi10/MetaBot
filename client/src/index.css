@@ -280,12 +280,9 @@
   margin-top: 10px;
 }
 
-
 /* Media Queries */
 @media (max-width: 768px) {
-  .project-heading{
-    font-size: 2rem;
-  }
+ 
   .homepageSection1 h1 {
     font-size: 4rem;
     padding-top: 25px;
