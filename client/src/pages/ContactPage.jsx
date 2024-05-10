@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Layout from '../Layout/Layout'
 import contactImage from "../assets/HomePagePics/contactpics/7056551.jpg"
 import socialMedia from "../assets/HomePagePics/contactpics/socialmedia.png"
@@ -29,7 +29,9 @@ const ContactPage = () => {
             alert('Error: Something went wrong!');
         }
     };
-
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
 
 
     return (

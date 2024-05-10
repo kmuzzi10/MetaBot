@@ -11,19 +11,30 @@ export default function NewsCards(props) {
     };
 
     return (
-        <div style={{ marginBottom: '20px' }}> {/* Add margin bottom for spacing between cards */}
+        <div style={{ marginBottom: '20px', maxWidth: '400px' }}> {/* Set max width for smaller cards */}
             <Card style={{ backgroundColor: 'beige', color: 'black' }}>
-                <Card.Img variant="top" src={props.image} style={{ width: '300px', height: '280px' }} />
+                <div style={{ position: 'relative', overflow: 'hidden' }}>
+                    <img
+                        src={props.image}
+                        alt=""
+                        style={{
+                            width: '100%',
+                            height: 'auto',
+                            display: 'block',
+                            transition: 'transform 0.3s ease-in-out'
+                        }}
+                    />
+                </div>
                 <Card.Body>
-                    <Card.Text style={{ fontSize: '2rem' }}>
+                    <Card.Text style={{ fontSize: '1.5rem' }}> {/* Reduce font size */}
                         {props.title}
                     </Card.Text>
-                    <Card.Text style={{ fontSize: '1.2rem' }}>
+                    <Card.Text style={{ fontSize: '1rem' }}> {/* Reduce font size */}
                         {expanded ? props.text : `${props.text.substring(0, 100)}`}
                     </Card.Text>
                     {/* Render "See More" link only if text length is greater than 100 */}
                     {props.text.length > 100 && (
-                        <Link onClick={handleSeeMoreClick} style={{ textDecoration: 'none', color: 'blue', cursor: 'pointer' }}>
+                        <Link onClick={handleSeeMoreClick} style={{ textDecoration: 'none', color: 'blue', cursor: 'pointer', fontSize: '1rem' }}> {/* Reduce font size */}
                             See More
                         </Link>
                     )}

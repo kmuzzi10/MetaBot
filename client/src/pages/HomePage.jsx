@@ -1,17 +1,16 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import Layout from '../Layout/Layout';
 import axios from 'axios';
-import illustrationSoftwarePic from '../assets/HomePagePics/Meeting.gif';
 import SliderReact from '../components/SliderReact';
 import Cards from '../components/HomeCards';
 import Swinger from '../components/swinger';
 import { useInView } from 'react-intersection-observer';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
+
 axios.defaults.withCredentials = true;
 const axiosInstance = axios.create({
   baseURL: `${process.env.REACT_APP_API}/api/v1/service-cards`,
-  // Add headers or other configurations here if needed
 });
 
 const HomePage = () => {
@@ -30,25 +29,24 @@ const HomePage = () => {
       }
     } catch (error) {
       console.error('Error fetching cards:', error);
-      // Handle error gracefully, e.g., set error state
     }
   }, []);
 
   useEffect(() => {
     gettingCards();
+    window.scrollTo(0, 0);
   }, [gettingCards]);
 
   return (
     <Layout>
       <div
         ref={section1Ref}
-        className={`fluid-container section-1 ${section1InView ? 'visible fade-in' : ''
-          }`}
+        className={`fluid-container section-1 ${section1InView ? 'visible fade-in' : ''}`}
       >
-        <div style={{ paddingTop: '50px',paddingLeft:'20px' }} className="fluid-container">
+        <div style={{ paddingTop: '50px', paddingLeft: '20px' }} className="fluid-container">
           <div className="row">
             <div className="col-lg-6 col-md-6 col-sm-12 homepageSection1">
-              <h1 className="ubuntu-bold" style={{paddingTop:'25px',fontSize:"6rem"}}>Team Of Professional IT Experts</h1>
+              <h1 className="ubuntu-bold" >Team Of Professional IT Experts</h1>
               <h2
                 className="ubuntu-medium"
                 style={{ fontSize: '1.6rem', color: '#C3FF93', marginTop: '30px' }}
@@ -57,6 +55,7 @@ const HomePage = () => {
               </h2>
             </div>
             <div className="col-lg-6 col-md-6 col-sm-12 mt-3">
+              {/* Lazy load image */}
               {/* <img
                 className="illustrationImage"
                 width={'90%'}
@@ -72,16 +71,14 @@ const HomePage = () => {
 
       <div
         ref={section2Ref}
-        className={`container-fluid section-2 ${section2InView ? 'visible slide-in' : ''
-          }`}
+        className={`container-fluid section-2 ${section2InView ? 'visible slide-in' : ''}`}
       >
-        <SliderReact img1={illustrationSoftwarePic} />
+        <SliderReact />
       </div>
 
       <div
         ref={section3Ref}
-        className={`fluid-container section-3 ${section3InView ? 'visible fade-in' : ''
-          }`}
+        className={`fluid-container section-3 ${section3InView ? 'visible fade-in' : ''}`}
       >
         <div className="row section-3-row">
           <div className="col-lg-6 col-md-6 col-sm-12">
@@ -101,7 +98,7 @@ const HomePage = () => {
               {cards.map((a, index) => (
                 <div key={index} className="col-lg-4 col-md-4 col-sm-12 mb-3">
                   <Cards
-                    image={a.image}
+                    image={`${process.env.REACT_APP_API}/api/v1/service-cards/card-photo/${a._id}`}
                     title={a.title}
                     text={a.text}
                     style={{ margin: '0 5px', padding: '10px' }}
@@ -123,8 +120,7 @@ const HomePage = () => {
 
       <div
         ref={section4Ref}
-        className={`fluid-container section4-back ${section4InView ? 'visible slide-in' : ''
-          }`}
+        className={`fluid-container section4-back ${section4InView ? 'visible slide-in' : ''}`}
       >
         <h1 className="ubuntu-bold">
           We Have A Professional Developers Team <br /> To Work On Professional
@@ -139,3 +135,11 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+
+
+
+
+
+
+

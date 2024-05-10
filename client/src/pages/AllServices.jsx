@@ -21,6 +21,7 @@ const AllServices = () => {
 
   useEffect(() => {
     gettingCards();
+    window.scrollTo(0, 0);
   }, []);
 
   return (

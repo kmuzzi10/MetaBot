@@ -65,6 +65,7 @@ const ServicePage = () => {
 
   useEffect(() => {
     gettingTrainingCards();
+    window.scrollTo(0, 0);
   }, [gettingTrainingCards]);
 
   return (

@@ -3,8 +3,10 @@ import Layout from '../../Layout/Layout';
 import axios from "axios";
 import AdminMenu from '../../components/AdminMenu/AdminMenu';
 import { useNavigate, useParams } from 'react-router-dom';
+
 axios.defaults.withCredentials = true;
-const UpdateTrainingCard = () => {
+
+const UpdateClientCard = () => {
     const navigate = useNavigate();
     const params = useParams();
     const [title, setTitle] = useState("");
@@ -12,25 +14,26 @@ const UpdateTrainingCard = () => {
     const [image, setImage] = useState(null);
     const [id, setId] = useState("");
     const [imageUrl, setImageUrl] = useState("");
+    const [loading, setLoading] = useState(false);
 
-    // Fetch single card on component mount
     useEffect(() => {
         const getSingleCard = async () => {
             try {
                 const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/training-cards/get-cards/${params.id}`);
-                const { title, text, image, _id } = data.cardsData;
+                const { title, text, _id } = data.cardsData;
                 setTitle(title);
                 setText(text);
-                setImageUrl(image);
+                setImageUrl(`${process.env.REACT_APP_API}/api/v1/training-cards/card-photo/${_id}
+
+                `);
                 setId(_id);
             } catch (err) {
-                console.log(err);
+                console.error("Error fetching card:", err);
             }
         }
         getSingleCard();
     }, [params.id]);
 
-    // Handle image upload
     const handleImageUpload = (e) => {
         const selectedImage = e.target.files[0];
         setImage(selectedImage);
@@ -38,9 +41,9 @@ const UpdateTrainingCard = () => {
         setImageUrl(imageUrl);
     }
 
-    // Handle update
     const handleUpdate = async () => {
         try {
+            setLoading(true);
             const formData = new FormData();
             formData.append('title', title);
             formData.append('text', text);
@@ -49,31 +52,33 @@ const UpdateTrainingCard = () => {
             }
             const { data } = await axios.put(`${process.env.REACT_APP_API}/api/v1/training-cards/update-cards/${id}`, formData);
             if (data.success) {
-                alert(data.message);
+                alert("Card Updated Successfully");
+                navigate('/dashboard-admin/get-training-card'); // Redirect after successful update
             } else {
                 alert("Failed to update card");
             }
         } catch (error) {
-            console.log(error);
+            console.error("Error updating card:", error);
             alert('Something went wrong');
+        } finally {
+            setLoading(false);
         }
     }
 
-    // Handle delete
     const handleDelete = async () => {
         try {
-            let answer = window.confirm('Are you sure want to delete this product?');
-            if (answer) {
+            const confirmed = window.confirm('Are you sure you want to delete this product?');
+            if (confirmed) {
                 const { data } = await axios.delete(`${process.env.REACT_APP_API}/api/v1/training-cards/delete-cards/${id}`);
                 if (data.success) {
                     alert("Product deleted successfully");
-                    // Redirect or perform any additional action after deletion
+                    navigate('/dashboard-admin/get-training-card'); // Redirect after successful deletion
                 } else {
                     alert("Failed to delete product");
                 }
             }
         } catch (error) {
-            console.log(error);
+            console.error("Error deleting product:", error);
             alert("Something went wrong");
         }
     }
@@ -112,10 +117,14 @@ const UpdateTrainingCard = () => {
                                 <textarea type='text' placeholder='Enter Text of Product' className='form-control' value={text} onChange={(e) => setText(e.target.value)} />
                             </div>
                             <div className='mb-3'>
-                                <button className='btn btn-primary' onClick={handleUpdate}>Update Product</button>
+                                <button className='btn btn-primary' onClick={handleUpdate} disabled={loading}>
+                                    {loading ? "Updating..." : "Update Product"}
+                                </button>
                             </div>
                             <div className='mb-3'>
-                                <button className='btn btn-danger' onClick={handleDelete}>Delete Product</button>
+                                <button className='btn btn-danger' onClick={handleDelete}>
+                                    Delete Product
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -125,4 +134,4 @@ const UpdateTrainingCard = () => {
     )
 }
 
-export default UpdateTrainingCard;
+export default UpdateClientCard;

@@ -25,6 +25,7 @@ const AllProjects = () => {
 
   useEffect(() => {
     gettingNewsCards();
+    window.scrollTo(0, 0);
   }, []);
   return (
     <Layout>

@@ -23,6 +23,7 @@ app.use(bodyParser.json({ limit: '10mb' }));
 
 app.use(cors({
     origin: 'https://metabot-neon.vercel.app', //frontend link
+    // origin: 'http://localhost:3000', //frontend link
     methods:["GET","POST","PUT","DELETE"], 
     credentials: true,  
 }));

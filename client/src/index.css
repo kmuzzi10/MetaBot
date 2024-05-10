@@ -80,7 +80,8 @@
 }
 
 .homepageSection1 h1 {
-  font-size: 4rem;
+  font-size: 6rem;
+  padding-top: 25px;
 }
 
 .section-2 {
@@ -281,6 +282,10 @@
 
 /* Media Queries */
 @media (max-width: 768px) {
+  .homepageSection1 h1 {
+    font-size: 4rem;
+    padding-top: 25px;
+  }
   .about-button {
     margin-left: 0px;
   }
