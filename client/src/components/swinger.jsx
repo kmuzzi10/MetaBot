@@ -27,7 +27,7 @@ const Swinger = () => {
         <div>
             <div>
                 <div className="sectiontitle">
-                    <h1 style={{ fontSize: '3rem' }} className='project-heading'>PROJECTS STATISTICS</h1>
+                    <h1 style={{fontSize:'4.4rem',fontFamily:'unset' }} className='project-heading'>PROJECTS STATISTICS</h1>
 
                 </div>
                 <div id="projectFacts" className="sectionClass">

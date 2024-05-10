@@ -42,34 +42,29 @@ const HomePage = () => {
     <Layout>
       <div
         ref={section1Ref}
-        className={`fluid-container section-1 ${
-          section1InView ? 'visible fade-in' : ''
-        }`}
+        className={`fluid-container section-1 ${section1InView ? 'visible fade-in' : ''
+          }`}
       >
-        <div style={{ paddingTop: '50px' }} className="fluid-container">
+        <div style={{ paddingTop: '50px',paddingLeft:'20px' }} className="fluid-container">
           <div className="row">
             <div className="col-lg-6 col-md-6 col-sm-12 homepageSection1">
-              <h6 style={{ color: 'red' }}>Development Agency</h6>
-              <h1 className="ubuntu-bold">Delivering Result Oriented</h1>
+              <h1 className="ubuntu-bold" style={{paddingTop:'25px',fontSize:"6rem"}}>Team Of Professional IT Experts</h1>
               <h2
                 className="ubuntu-medium"
-                style={{ fontSize: '2rem', color: 'rgb(216, 24, 24)', marginTop: '10px' }}
+                style={{ fontSize: '1.6rem', color: '#C3FF93', marginTop: '30px' }}
               >
-                <u>DIGITAL SOLUTIONS</u>
+                Aiming To Deliver Optimized And Efficient Solutions
               </h2>
-              <p style={{ marginTop: '10px', fontSize: '1rem' }} className="ubuntu-light">
-                Welcome to Metabot, where innovation meets efficiency in the realm of software solutions. At Metabot, we're committed to revolutionizing the way businesses operate, empowering them with cutting-edge technologies tailored to their unique needs. Our team of skilled engineers and developers crafts bespoke software solutions that streamline processes, boost productivity, and drive growth. Whether you're a startup looking to establish your digital presence or a seasoned enterprise aiming to optimize operations, Metabot is your trusted partner in navigating the ever-evolving landscape of technology. Join us in shaping the future of business, one line of code at a time.
-              </p>
             </div>
             <div className="col-lg-6 col-md-6 col-sm-12 mt-3">
-              <img
+              {/* <img
                 className="illustrationImage"
                 width={'90%'}
                 height={'100%'}
                 src={illustrationSoftwarePic}
                 alt=""
                 loading="lazy"
-              />
+              /> */}
             </div>
           </div>
         </div>
@@ -77,18 +72,16 @@ const HomePage = () => {
 
       <div
         ref={section2Ref}
-        className={`container-fluid section-2 ${
-          section2InView ? 'visible slide-in' : ''
-        }`}
+        className={`container-fluid section-2 ${section2InView ? 'visible slide-in' : ''
+          }`}
       >
         <SliderReact img1={illustrationSoftwarePic} />
       </div>
 
       <div
         ref={section3Ref}
-        className={`fluid-container section-3 ${
-          section3InView ? 'visible fade-in' : ''
-        }`}
+        className={`fluid-container section-3 ${section3InView ? 'visible fade-in' : ''
+          }`}
       >
         <div className="row section-3-row">
           <div className="col-lg-6 col-md-6 col-sm-12">
@@ -108,7 +101,7 @@ const HomePage = () => {
               {cards.map((a, index) => (
                 <div key={index} className="col-lg-4 col-md-4 col-sm-12 mb-3">
                   <Cards
-                    image={`${process.env.REACT_APP_API}/api/v1/service-cards/card-photo/${a._id}`}
+                    image={a.image}
                     title={a.title}
                     text={a.text}
                     style={{ margin: '0 5px', padding: '10px' }}
@@ -130,17 +123,15 @@ const HomePage = () => {
 
       <div
         ref={section4Ref}
-        className={`fluid-container section4-back ${
-          section4InView ? 'visible slide-in' : ''
-        }`}
+        className={`fluid-container section4-back ${section4InView ? 'visible slide-in' : ''
+          }`}
       >
         <h1 className="ubuntu-bold">
           We Have A Professional Developers Team <br /> To Work On Professional
-          Projects
+          Projects.
         </h1>
       </div>
-
-      <div className="fluid-container">
+      <div className="fluid-container swinger-class">
         <Swinger />
       </div>
     </Layout>
