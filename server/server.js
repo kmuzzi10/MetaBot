@@ -12,9 +12,9 @@ import clientRoutes from "./routes/clientRoutes.js"
 import authRoutes from "./routes/authRoutes.js"
 import trainingRoutes from "./routes/trainingRoutes.js"
 import nodemailer from "nodemailer"
-import multer from "multer"
-import storage from "../server/Middlewares/fileUpload.js"
-import pdfModel from "../server/models/pdfModel.js"
+// import multer from "multer"
+// import storage from "../server/Middlewares/fileUpload.js"
+// import pdfModel from "../server/models/pdfModel.js"
 
 dotenv.config();
 
@@ -36,7 +36,7 @@ app.options('*', cors());
 
 app.use(express.json());
 app.use(morgan('dev'));
-app.use('/files',express.static('files'))
+// app.use('/files',express.static('files'))
 // app.use('/uploads', express.static('uploads'))
 
 // Routes
