@@ -146,8 +146,8 @@ td {
     transition: color 0.3s; /* Smooth transition for icon color */
 }
 .project-heading{
-    font-size: 5.3rem;
-    font-family: 'Times New Roman', Times, serif;
+    font-size: 3.8rem;
+    
 }
 @media (max-width: 786px) {
     .projectFactsWrap .item {

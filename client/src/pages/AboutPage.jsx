@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../Layout/Layout';
 import SwingerTwo from '../components/SwingerTwo';
-import AboutCards from '../components/AboutCards';
+import MediaCard from '../components/MediaCard';
 import AboutServiceCards from '../components/AboutServiceCards';
 import NewsCards from '../components/NewsCards';
 import axios from 'axios';
@@ -83,7 +83,7 @@ const AboutPage = () => {
         </div>
         <div className="row about-cards-row">
           {cards.map((a, index) => (
-            <div key={index} className="col-lg-4 col-md-6 col-sm-12 section-4-container-row mb-3">
+            <div key={index} className="col-lg-4 col-md-6 col-sm-12 section-4-container-row mb-3 mt-4">
               <AboutServiceCards image={`${process.env.REACT_APP_API}/api/v1/cards/card-photo/${a._id}`} title={a.title} text={a.text} style={{ margin: '0 5px', padding: '10px' }} />
             </div>
           ))}
@@ -92,25 +92,25 @@ const AboutPage = () => {
 
       {/* Section 4 */}
       <div className="container section-4-container-about">
-        <h1 style={{ fontSize: '5rem' }}>Why Choose Us</h1>
-        <div className="row">
+        <h1 className='about-heading-choose'>Why Choose Us</h1>
+        <div className="row about-row">
           <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
-            <AboutCards image={servicePic} title={'Personalized Service'} description={'Receive dedicated attention and customized strategies to address your specific business challenges and goals'} />
+            <MediaCard image={servicePic} title={'Personalized Service'} description={'Receive dedicated attention and customized strategies to address your specific business challenges and goals'} />
           </div>
           <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
-            <AboutCards image={integrationPic} title={'Seamless Integration'} description={'Ensure smooth compatibility and effortless integration with your existing systems and workflows'} />
+            <MediaCard image={integrationPic} title={'Seamless Integration'} description={'Ensure smooth compatibility and effortless integration with your existing systems and workflows'} />
           </div>
           <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
-            <AboutCards image={experiencePic} title={'Proven Excellence'} description={'Trust our track record of delivering successful projects across diverse industries, backed by a commitment to your success.'} />
+            <MediaCard image={experiencePic} title={'Proven Excellence'} description={'Trust our track record of delivering successful projects across diverse industries, backed by a commitment to your success.'} />
           </div>
           <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
-            <AboutCards image={innovationPic} title={'Innovative Solutions'} description={'Elevate your business with cutting-edge technology tailored to your unique requirements'} />
+            <MediaCard image={innovationPic} title={'Innovative Solutions'} description={'Elevate your business with cutting-edge technology tailored to your unique requirements'} />
           </div>
           <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
-            <AboutCards image={reliablePic} title={'Reliable Performance'} description={'Experience dependable software solutions engineered for excellence, reliability, and scalability'} />
+            <MediaCard image={reliablePic} title={'Reliable Performance'} description={'Experience dependable software solutions engineered for excellence, reliability, and scalability'} />
           </div>
           <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
-            <AboutCards image={reliablePic} title={'Optimized Results'} description={'Cost and Resource optimized software solution that are efficient in working'} />
+            <MediaCard image={reliablePic} title={'Optimized Results'} description={'Cost and Resource optimized software solution that are efficient in working'} />
           </div>
         </div>
       </div>

@@ -27,6 +27,9 @@ const Header = () => {
                         <li className="nav-item">
                             <NavLink style={{fontSize:'1rem'}} className="nav-link" to='/contact'>Contact</NavLink>
                         </li>
+                        <li className="nav-item">
+                            <NavLink style={{fontSize:'1rem'}} className="nav-link" to='/upload-pdf'>Training Form</NavLink>
+                        </li>
                     
                     </ul>
                 </div>

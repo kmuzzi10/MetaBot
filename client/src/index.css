@@ -52,10 +52,14 @@
 }
 
 .section-3 {
-  padding-top: 130px;
-  padding-bottom: 80px;
-  background: url(../src/assets/HomePagePics/abstract-plexus-low-poly-shapes-with-connected-lines-dots.jpg) no-repeat;
+  
+  background: url(../src/assets/HomePagePics/mjy11.jpg) no-repeat;
   background-size: cover;
+}
+.dev{
+  text-align: center;
+  font-size: 4rem;
+  margin-top: 150px;
 }
 
 .section-3-row h3{
@@ -120,9 +124,7 @@
 
 .swinger-class{
   padding-top: 100px;
-  background-image: url(../src/assets/HomePagePics/swinger.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
+ 
 }
 
 /* Home Page Animations */
@@ -217,11 +219,13 @@
 }
 
 .section-4-container-about {
-  background: url(./assets/HomePagePics/aboutPageImages/fantasy-marine-landscape-with-bioluminescent-nature.jpg) no-repeat;
+  background: url(./assets/HomePagePics/aboutPageImages/liquid-marbling-paint-texture-background-fluid-painting-abstract-texture-intensive-color-mix-wallpaper.jpg) no-repeat;
   background-size: cover;
   padding-top: 70px;
   text-align: center;
 }
+
+
 
 
 
@@ -280,9 +284,17 @@
   margin-top: 10px;
 }
 
+.about-heading-choose{
+  font-size: 5rem;
+  margin-bottom: 20px;
+}
+
 /* Media Queries */
 @media (max-width: 768px) {
- 
+  .about-heading-choose{
+    font-size: 2.4rem;
+    margin-bottom: 20px;
+  }
   .homepageSection1 h1 {
     font-size: 4rem;
     padding-top: 25px;

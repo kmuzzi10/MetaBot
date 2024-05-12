@@ -7,6 +7,7 @@ import Swinger from '../components/swinger';
 import { useInView } from 'react-intersection-observer';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
+// import '../css/HomePage.css'; // Import CSS file for animations
 
 axios.defaults.withCredentials = true;
 const axiosInstance = axios.create({
@@ -46,13 +47,15 @@ const HomePage = () => {
         <div style={{ paddingTop: '50px', paddingLeft: '20px' }} className="fluid-container">
           <div className="row">
             <div className="col-lg-6 col-md-6 col-sm-12 homepageSection1">
-              <h1 className="ubuntu-bold" >Team Of Professional IT Experts</h1>
+              <h1 style={{ color: '#AACBC4' }} className="ubuntu-bold" >Team Of Professional IT Experts</h1>
               <h2
                 className="ubuntu-medium"
-                style={{ fontSize: '1.6rem', color: '#C3FF93', marginTop: '30px' }}
+                style={{ fontSize: '2rem', color: '#707D7D', marginTop: '30px', marginBottom: '30px' }}
               >
                 Aiming To Deliver Optimized And Efficient Solutions
               </h2>
+              <hr style={{ width: '18%', color: 'white' }} />
+              <p style={{ color: '#AACBC4', fontSize: '1.2rem' }}>Introducing METABOT Solutions, a pioneering software company at the forefront of technological innovation. Specializing in bespoke tech-based solutions, we offer a dynamic array of services tailored to meet the diverse needs of modern businesses. From cutting-edge software development to innovative digital strategies, our team is committed to delivering excellence in every project. With a focus on efficiency, scalability, and user-centric design, we empower organizations to thrive in today's fast-paced digital landscape. At METABOT Solutions, we don't just provide solutions, we cultivate partnerships, driving success through collaborative innovation and unwavering dedication to our clients' goals.</p>
             </div>
             <div className="col-lg-6 col-md-6 col-sm-12 mt-3">
               {/* Lazy load image */}
@@ -91,8 +94,19 @@ const HomePage = () => {
               Metabot leads the market with a singular purpose: to redefine the landscape of software solutions. Our commitment to innovation, coupled with our relentless pursuit of excellence, sets us apart as industry trailblazers. At Metabot, we don't just follow trends; we set them. With a focus on creativity and cutting-edge technology, we empower businesses to transcend limitations and achieve their full potential. Join us at the forefront of innovation and experience the difference that sets Metabot apart from the rest.
             </p>
           </div>
+
         </div>
-        {cards.length > 0 && (
+        <div className='row dev-row'>
+          <h1 className="ubuntu-bold dev">
+            We Have A Professional Developers Team <br /> To Work On Professional
+            Projects.
+          </h1>
+        </div>
+        <hr style={{ width: '70%', margin: 'auto', marginTop: '100px' }} />
+        <div className="fluid-container swinger-class">
+          <Swinger />
+        </div>
+        {/* {cards.length > 0 && (
           <div className="fluid-container home-cards">
             <div className="row home-cards-row">
               {cards.map((a, index) => (
@@ -115,31 +129,12 @@ const HomePage = () => {
               </Button>
             </Link>
           </div>
-        )}
+        )} */}
       </div>
 
-      <div
-        ref={section4Ref}
-        className={`fluid-container section4-back ${section4InView ? 'visible slide-in' : ''}`}
-      >
-        <h1 className="ubuntu-bold">
-          We Have A Professional Developers Team <br /> To Work On Professional
-          Projects.
-        </h1>
-      </div>
-      <div className="fluid-container swinger-class">
-        <Swinger />
-      </div>
+
     </Layout>
   );
 };
 
 export default HomePage;
-
-
-
-
-
-
-
-

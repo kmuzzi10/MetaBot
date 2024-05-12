@@ -29,6 +29,8 @@ import ForgotPassword from "./pages/ForgotPassword";
 import GetTrainingCard from "./AdminPages/UpdateAndGetTrainingCards/GetTrainingCard";
 import UpdateTrainingCard from "./AdminPages/UpdateAndGetTrainingCards/UpdateTrainingCard";
 import CreateTrainingCard from "./AdminPages/pages/CreateTrainingCard";
+import UploadPdf from "./pages/UploadPdf";
+import PdfViewer from "../src/AdminPages/pdfViewer/PdfViewer"
 
 function App() {
   const location = useLocation();
@@ -50,11 +52,13 @@ function App() {
       <Route path="/all-services" element={<AllServices />} />
       <Route path="/all-news" element={<AllNews />} />
       <Route path="/all-projects" element={<AllProjects />} />
+      <Route path="/upload-pdf" element={<UploadPdf />} />
       <Route path="/admin-login-metabot" element={<LoginForm />} />
       <Route path="/admin-login-metabot-forgot-password" element={<ForgotPassword/>} />
       {isLoggedIn && (
         <>
           <Route path="/dashboard-admin" element={<AdminPage />} />
+          <Route path="/dashboard-admin/get-trainings" element={<PdfViewer />} />
           <Route path="/dashboard-admin/create-card" element={<CreateCard />} />
           <Route path="/dashboard-admin/create-client-card" element={<CreateClientCard />} />
           <Route path="/dashboard-admin/create-news-card" element={<CreateNewsCard />} />

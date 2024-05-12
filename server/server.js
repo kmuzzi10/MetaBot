@@ -12,6 +12,9 @@ import clientRoutes from "./routes/clientRoutes.js"
 import authRoutes from "./routes/authRoutes.js"
 import trainingRoutes from "./routes/trainingRoutes.js"
 import nodemailer from "nodemailer"
+import multer from "multer"
+import storage from "../server/Middlewares/fileUpload.js"
+import pdfModel from "../server/models/pdfModel.js"
 
 dotenv.config();
 
@@ -24,8 +27,8 @@ app.use(bodyParser.json({ limit: '10mb' }));
 app.use(cors({
     origin: 'https://metabot-neon.vercel.app', //frontend link
     // origin: 'http://localhost:3000', //frontend link
-    methods:["GET","POST","PUT","DELETE"], 
-    credentials: true,  
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
 }));
 
 // Add this middleware to set headers for preflight requests
@@ -33,7 +36,8 @@ app.options('*', cors());
 
 app.use(express.json());
 app.use(morgan('dev'));
-app.use('/uploads', express.static('uploads'))
+app.use('/files',express.static('files'))
+// app.use('/uploads', express.static('uploads'))
 
 // Routes
 app.get('/', (req, res) => {
@@ -52,6 +56,52 @@ app.get('/', (req, res) => {
     }
 })
 
+//multer api
+
+const upload = multer({ storage: storage })
+
+
+app.post("/upload-files", upload.single("file"), async (req, res) => {
+    const name = req.body.name
+    const email = req.body.email
+    const phone = req.body.phone
+    const fileName = req.file.filename
+    const areaOfInterest = req.body.areaOfInterest
+    try {
+        await pdfModel.create({ name: name, email: email, phone: phone, areaOfInterest: areaOfInterest, file: fileName })
+
+        res.status(200).send({
+            success: true,
+            message: "File Uploaded Successfully"
+        })
+    } catch (err) {
+        console.log(err)
+        res.status(500).send({
+            success: false,
+            message: "Server Error",
+            err: err
+        })
+    }
+})
+
+app.get('/get-files',async(req,res)=>{
+    try{
+        const data = await pdfModel.find({})
+        res.status(200).send({
+            success:true,
+            message:"Get Files Successfully",
+            data
+        })
+    }catch(err){
+        console.log(err)
+        res.status(500).send({
+            success: false,
+            message: "Server Error",
+            err: err
+        })
+    }
+    
+})
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/cards", cardRoutes);
