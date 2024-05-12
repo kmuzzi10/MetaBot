@@ -58,50 +58,50 @@ app.get('/', (req, res) => {
 
 //multer api
 
-const upload = multer({ storage: storage })
+// const upload = multer({ storage: storage })
 
 
-app.post("/upload-files", upload.single("file"), async (req, res) => {
-    const name = req.body.name
-    const email = req.body.email
-    const phone = req.body.phone
-    const fileName = req.file.filename
-    const areaOfInterest = req.body.areaOfInterest
-    try {
-        await pdfModel.create({ name: name, email: email, phone: phone, areaOfInterest: areaOfInterest, file: fileName })
+// app.post("/upload-files", upload.single("file"), async (req, res) => {
+//     const name = req.body.name
+//     const email = req.body.email
+//     const phone = req.body.phone
+//     const fileName = req.file.filename
+//     const areaOfInterest = req.body.areaOfInterest
+//     try {
+//         await pdfModel.create({ name: name, email: email, phone: phone, areaOfInterest: areaOfInterest, file: fileName })
 
-        res.status(200).send({
-            success: true,
-            message: "File Uploaded Successfully"
-        })
-    } catch (err) {
-        console.log(err)
-        res.status(500).send({
-            success: false,
-            message: "Server Error",
-            err: err
-        })
-    }
-})
+//         res.status(200).send({
+//             success: true,
+//             message: "File Uploaded Successfully"
+//         })
+//     } catch (err) {
+//         console.log(err)
+//         res.status(500).send({
+//             success: false,
+//             message: "Server Error",
+//             err: err
+//         })
+//     }
+// })
 
-app.get('/get-files',async(req,res)=>{
-    try{
-        const data = await pdfModel.find({})
-        res.status(200).send({
-            success:true,
-            message:"Get Files Successfully",
-            data
-        })
-    }catch(err){
-        console.log(err)
-        res.status(500).send({
-            success: false,
-            message: "Server Error",
-            err: err
-        })
-    }
+// app.get('/get-files',async(req,res)=>{
+//     try{
+//         const data = await pdfModel.find({})
+//         res.status(200).send({
+//             success:true,
+//             message:"Get Files Successfully",
+//             data
+//         })
+//     }catch(err){
+//         console.log(err)
+//         res.status(500).send({
+//             success: false,
+//             message: "Server Error",
+//             err: err
+//         })
+//     }
     
-})
+// })
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/cards", cardRoutes);
