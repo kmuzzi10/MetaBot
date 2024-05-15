@@ -30,7 +30,7 @@ const Header = () => {
               <NavLink style={{ fontSize: '1rem' }} className="nav-link" to="/contact">Contact Us</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink style={{ fontSize: '1rem' }} className="nav-link" to="/upload-pdf">Training Form</NavLink>
+              <NavLink style={{ fontSize: '1rem' }} className="nav-link" to="/upload-pdf">Join Our Team</NavLink>
             </li>
           </ul>
         </div>
