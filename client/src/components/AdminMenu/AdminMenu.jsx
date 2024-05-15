@@ -8,7 +8,7 @@ const AdminMenu = () => {
             <h1 style={{fontSize:'2rem'}}>Admin Panel</h1>
                 <div className="list-group">
                     <NavLink to='/dashboard-admin' className="list-group-item list-group-item-action">Home Admin</NavLink>
-                    {/* <NavLink to='/dashboard-admin/get-trainings' className="list-group-item list-group-item-action">Trainings Data</NavLink> */}
+                    <NavLink to='/dashboard-admin/get-trainings' className="list-group-item list-group-item-action">Trainings Data</NavLink>
                     <NavLink to='/dashboard-admin/create-card' className="list-group-item list-group-item-action">Create Service Cards</NavLink>
                     <NavLink to='/dashboard-admin/create-client-card' className="list-group-item list-group-item-action">Create Client Card</NavLink>
                     <NavLink to='/dashboard-admin/create-news-card' className="list-group-item list-group-item-action">Create News Card</NavLink>

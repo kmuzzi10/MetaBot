@@ -8,8 +8,8 @@ const PdfViewer = () => {
 
   const getAllData = async () => {
     try {
-      const { data } = await axios.get(`${process.env.REACT_APP_API}/get-files`);
-      setFiles(data.data); // Assuming your data is stored in the 'data' key of the response
+      const response = await axios.get(`${process.env.REACT_APP_API}/get-files`);
+      setFiles(response.data.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -18,6 +18,36 @@ const PdfViewer = () => {
   useEffect(() => {
     getAllData();
   }, []);
+
+  const downloadFile = async (fileId) => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_API}/download/${fileId}`, {
+        responseType: 'blob' // Ensure response type is blob for binary data
+      });
+
+      // Create a URL for the blob data and trigger download
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'file.pdf'); // Change the file name if needed
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode.removeChild(link);
+
+    } catch (error) {
+      console.error('Error downloading file:', error);
+    }
+  };
+
+  const deleteFile = async (fileId) => {
+    try {
+      await axios.delete(`${process.env.REACT_APP_API}/delete-file/${fileId}`);
+      // After deletion, update the file list
+      getAllData();
+    } catch (error) {
+      console.error('Error deleting file:', error);
+    }
+  };
 
   return (
     <>
@@ -37,6 +67,7 @@ const PdfViewer = () => {
                     <th>Phone</th>
                     <th>Area of Interest</th>
                     <th>File</th>
+                    <th>Actions</th> {/* Add a new table header for actions */}
                   </tr>
                 </thead>
                 <tbody>
@@ -47,12 +78,15 @@ const PdfViewer = () => {
                       <td>{file.phone}</td>
                       <td>{file.areaOfInterest}</td>
                       <td>
-                        <a href={`${process.env.REACT_APP_API}/files/${file.file}`} className="btn btn-primary" download>
-                          Download Resume
-                        </a>
+                        <button onClick={() => downloadFile(file._id)} className="btn btn-primary">
+                          Download
+                        </button>
                       </td>
-
-
+                      <td>
+                        <button onClick={() => deleteFile(file._id)} className="btn btn-danger">
+                          Delete
+                        </button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>

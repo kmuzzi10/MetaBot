@@ -9,23 +9,24 @@ const PdfModelSchema = new mongoose.Schema({
         unique: true
     },
     name: {
-       type:String
+        type: String
     },
     email: {
         type: String
     },
-    phone:{
-        type:Number
+    phone: {
+        type: Number
     },
-    areaOfInterest:{
-        type:String
+    areaOfInterest: {
+        type: String
     },
-    file:{
-        type:String
+    file: {
+        data: Buffer,
+        contentType: String
     }
 });
 
-PdfModelSchema.pre('save', async function(next) {
+PdfModelSchema.pre('save', async function (next) {
     if (!this.Id) {
         const lastCard = await this.constructor.findOne({}, {}, { sort: { 'Id': -1 } });
         this.Id = lastCard ? lastCard.Id + 1 : 1;

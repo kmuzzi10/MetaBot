@@ -84,12 +84,12 @@ const HomePage = () => {
         className={`fluid-container section-3 ${section3InView ? 'visible fade-in' : ''}`}
       >
         <div className="row section-3-row">
-          <div className="col-lg-6 col-md-6 col-sm-12">
+          <div className="col-lg-6 col-md-6 col-sm-12 section-3-row-1">
             <h3 className="roboto-medium">
               We Lead In The Market For Unique Purpose
             </h3>
           </div>
-          <div className="col-lg-6 col-md-6 col-sm-12 section3-text">
+          <div className="col-lg-6 col-md-6 col-sm-12 section3-text section-3-row-2">
             <p style={{ fontSize: '1rem' }} className="roboto-regular">
               Metabot leads the market with a singular purpose: to redefine the landscape of software solutions. Our commitment to innovation, coupled with our relentless pursuit of excellence, sets us apart as industry trailblazers. At Metabot, we don't just follow trends; we set them. With a focus on creativity and cutting-edge technology, we empower businesses to transcend limitations and achieve their full potential. Join us at the forefront of innovation and experience the difference that sets Metabot apart from the rest.
             </p>

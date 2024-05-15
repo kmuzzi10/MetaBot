@@ -10,16 +10,14 @@ const Footer = () => {
       <footer className=" text-center text-white">
         <div className="container p-4">
           <section className="mb-4">
-            <Link className="btn btn-primary btn-floating m-1" style={{ backgroundColor: '#3b5998' }} to='https://www.facebook.com/people/MetaBot/61559489362619/?is_tour_dismissed' role="button"><i className="fab fa-facebook-f" /></Link>
+            <Link className="btn btn-primary btn-floating m-1" style={{ backgroundColor: '#3b5998' }} to='https://m.facebook.com/METABOTSolutions/' role="button"><i className="fab fa-facebook-f" /></Link>
 
-            <Link className="btn btn-primary btn-floating m-1" style={{ backgroundColor: '#55acee' }} to=''
+            <Link className="btn btn-primary btn-floating m-1" style={{ backgroundColor: '#55acee' }} to='https://twitter.com/metabotsol'
               role="button"><i className="fab fa-twitter" /></Link>
 
-            <Link className="btn btn-primary btn-floating m-1" style={{ backgroundColor: '#ac2bac' }} to='' role="button"><i className="fab fa-instagram" /></Link>
+            <Link className="btn btn-primary btn-floating m-1" style={{ backgroundColor: '#ac2bac' }} to='https://www.instagram.com/metabot_sols?igsh=MTducnhzMmQ0bmFzdw==' role="button"><i className="fab fa-instagram" /></Link>
 
-            <Link className="btn btn-primary btn-floating m-1" style={{ backgroundColor: '#0082ca' }} to='https://www.linkedin.com/in/meta-bot-bb7b4a307/' role="button"><i className="fab fa-linkedin-in" /></Link>
-
-            <Link className="btn btn-primary btn-floating m-1" style={{ backgroundColor: '#333333' }} to='' role="button"><i className="fab fa-github" /></Link>
+            <Link className="btn btn-primary btn-floating m-1" style={{ backgroundColor: '#0082ca' }} to='https://www.linkedin.com/company/metabot-solutions/' role="button"><i className="fab fa-linkedin-in" /></Link>
           </section>
           <section className="mb-1">
             <p style={{fontSize:'1rem',paddingTop:'20px'}}>

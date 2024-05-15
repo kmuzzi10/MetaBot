@@ -11,6 +11,7 @@ import experiencePic from "../assets/HomePagePics/aboutPageImages/cardImages/exp
 import reliablePic from "../assets/HomePagePics/aboutPageImages/cardImages/reliable.jpg"
 import integrationPic from "../assets/HomePagePics/aboutPageImages/cardImages/integration.jpg"
 import servicePic from "../assets/HomePagePics/aboutPageImages/cardImages/service.jpg"
+import section4Pic from "../assets/HomePagePics/servicesImages/52.jpg";
 
 axios.defaults.withCredentials = true;
 const axiosInstance = axios.create({
@@ -50,9 +51,9 @@ const AboutPage = () => {
         <div className="row">
           <div className="col-lg-12 col-md-12 section-4-container-row col-sm-12">
             <div className='container'>
-              <h1>Discover Why Metabot Stands Out as Your Top Choice in Software Solutions!</h1>
+              <h1>Discover Why Metabot Stands Out <br /> As Your Top Choice in Software Solutions!</h1>
               <p style={{ fontSize: '1rem' }}>
-                Discover why Metabot reigns supreme in software solutions! 🌟 With innovation as our cornerstone, we lead the way in excellence. 💻 Trust our expertise to propel your business forward with precision and efficiency. 🚀 From concept to execution, we deliver bespoke solutions tailored to your needs. 🔍 Experience the difference with Metabot – where every line of code is crafted with passion. 💼 Choose us as your trusted partner in navigating the digital landscape.
+                Discover why Metabot reigns supreme in software solutions! 🌟 <br /> With innovation as our cornerstone, we lead the way in excellence. 💻 <br /> Trust our expertise to propel your business forward with precision and efficiency. 🚀<br /> From concept to execution, we deliver bespoke solutions tailored to your needs. 🔍<br /> Experience the difference with Metabot – where every line of code is crafted with passion. 💼<br /> Choose us as your trusted partner in navigating the digital landscape.
               </p>
             </div>
           </div>
@@ -65,7 +66,7 @@ const AboutPage = () => {
       </div>
 
       {/* Section 3 */}
-      <div className="container section-3-about">
+      {/* <div className="container section-3-about">
         <div className="container">
           <div className="row">
             <div className="col-lg-6 col-md-6 col-sm-6">
@@ -88,7 +89,7 @@ const AboutPage = () => {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
 
       {/* Section 4 */}
       <div className="container section-4-container-about">
@@ -115,11 +116,33 @@ const AboutPage = () => {
         </div>
       </div>
 
-      {/* Section 5 */}
+      {/* Section 4 */}
       <div className="container">
-        <h1 style={{ fontSize: '3.9rem' }}>Latest News From Our Side</h1>
-        <hr style={{ width: '180px', borderTop: '8px dotted white' }} />
-        <div className="row">
+        <h1 style={{ fontSize: '4rem' }}>Our Promise To You</h1>
+        <hr style={{ width: '180px', borderTop: '8px dotted', marginLeft: '10px', paddingBottom: '3rem' }} />
+        <div className="row" style={{ paddingTop: '30px' }}>
+          <div className="col-lg-6 col-md-6 col-sm-12">
+            <img className="imageService" width={'100%'} height={'100%'} src={section4Pic} alt="servicePicture" />
+          </div>
+          <div className="col-lg-6 col-md-6 col-sm-12 serviceContent">
+            <p style={{ fontSize: '1.2rem' }}>🚀 Welcome to MetaBot 🤖<br />
+              Experience, Excellence, and Exceptional Service – that's our promise.<br /><br />
+              🌟 Experienced Team: Trust our seasoned experts to bring your vision to life.<br />
+              🤝 Customer-Centric Approach: Your success is our priority, from start to finish.<br />
+              💡 Innovative Solutions: Embrace cutting-edge technology and forward-thinking strategies.<br />
+              🔒 Trust & Transparency: Count on us for open communication and reliable partnership.<br />
+              🌐 Global Reach, Local Touch: Wherever you are, we're here to deliver top-notch service.<br />
+              MetaBot: Your Partner in Digital Innovation.</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Section 5 */}
+      <div style={{marginTop:'100px'}} className="fluid-container news-container">
+        <h1>Latest News From Our Side</h1>
+        <hr style={{ width: '180px', borderTop: '8px dotted white', margin: '0 auto' }} />
+
+        <div style={{marginTop:'20px'}} className="row">
           {newsCards.map((a, index) => (
             <div key={index} className="col-lg-6 col-md-12 col-sm-12">
               <NewsCards image={`${process.env.REACT_APP_API}/api/v1/news-cards/card-photo/${a._id}`} text={a.text} title={a.title} />

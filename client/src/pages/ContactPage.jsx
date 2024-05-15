@@ -102,18 +102,18 @@ const ContactPage = () => {
                         <h1 className='contact-social-media' style={{ fontSize: '3rem' }}>Hit Us Up At</h1>
                         <hr style={{ width: '180px', borderTop: '8px dotted white' }} />
                         <div className='social-media-icons'>
-                            <h4><Link className="btn btn-primary btn-floating m-1" style={{ backgroundColor: '#55acee', height: '70px', width: '70px' }} to='' role="button"><i className="fab fa-twitter" style={{ fontSize: '40px' }} /></Link></h4>
-                            <h4><Link className="btn btn-primary btn-floating m-1" style={{ backgroundColor: '#ac2bac', height: '70px', width: '70px' }} to='' role="button"><i className="fab fa-instagram" style={{ fontSize: '40px' }} /></Link></h4>
-                            <h4><Link className="btn btn-primary btn-floating m-1" style={{ backgroundColor: '#0082ca', height: '70px', width: '70px' }} to='https://www.linkedin.com/in/meta-bot-bb7b4a307/' role="button"><i className="fab fa-linkedin-in" style={{ fontSize: '40px' }} /></Link></h4>
-                            <h4><Link className="btn btn-primary btn-floating m-1" style={{ backgroundColor: '#3b5998', height: '70px', width: '70px' }} to='https://www.facebook.com/people/MetaBot/61559489362619/?is_tour_dismissed' role="button"><i className="fab fa-facebook-f" style={{ fontSize: '40px' }} /></Link></h4>
-                            <h4><Link className="btn btn-primary btn-floating m-1" style={{ backgroundColor: 'green', height: '70px', width: '70px' }} to='' role="button"><i className="fab fa-whatsapp" style={{ fontSize: '44px' }} /></Link></h4>
+                            <h4><Link className="btn btn-primary btn-floating m-1" style={{ backgroundColor: '#55acee', height: '50px', width: '50px' }} to='https://twitter.com/metabotsol' role="button"><i className="fab fa-twitter" style={{ fontSize: '30px' }} /></Link></h4>
+                            <h4><Link className="btn btn-primary btn-floating m-1" style={{ backgroundColor: '#ac2bac', height: '50px', width: '50px' }} to='https://www.instagram.com/metabot_sols?igsh=MTducnhzMmQ0bmFzdw==' role="button"><i className="fab fa-instagram" style={{ fontSize: '30px' }} /></Link></h4>
+                            <h4><Link className="btn btn-primary btn-floating m-1" style={{ backgroundColor: '#0082ca', height: '50px', width: '50px' }} to='https://www.linkedin.com/company/metabot-solutions/' role="button"><i className="fab fa-linkedin-in" style={{ fontSize: '30px' }} /></Link></h4>
+                            <h4><Link className="btn btn-primary btn-floating m-1" style={{ backgroundColor: '#3b5998', height: '50px', width: '50px' }} to='https://m.facebook.com/METABOTSolutions/' role="button"><i className="fab fa-facebook-f" style={{ fontSize: '30px' }} /></Link></h4>
+                            <h4><Link className="btn btn-primary btn-floating m-1" style={{ backgroundColor: 'green', height: '50px', width: '50px' }} to='https://api.whatsapp.com/send?phone=03362529622' role="button"><i className="fab fa-whatsapp" style={{ fontSize: '30px' }} /></Link></h4>
 
 
 
                         </div>
                     </div>
                     <div className='col-lg-6 col-md-6 col-sm-12'>
-                        <img width={'550px'} height={'550px'} src={socialMedia} alt='socialmedia' />
+                        <img width={'300px'} height={'300px'} src={socialMedia} alt='socialmedia' />
                     </div>
                 </div>
             </div>

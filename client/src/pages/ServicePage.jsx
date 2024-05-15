@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Layout from '../Layout/Layout';
-import ServiceImage1 from "../assets/HomePagePics/servicesImages/serviceImage1.jpg";
+import ServiceImage1 from "../assets/HomePagePics/servicesImages/matrix-hacker-background.jpg";
 import CenterModeSliderService from "../components/ServiceSlider";
 import axios from "axios";
 import ServiceCard from "../components/ServiceCard";
 import ProjectCards from '../components/ProjectCards';
-import section4Pic from "../assets/HomePagePics/servicesImages/52.jpg";
 import { Link } from 'react-router-dom';
+import MediaCard from '../components/MediaCard';
 axios.defaults.withCredentials = true;
 const axiosInstance = axios.create({
   baseURL: `${process.env.REACT_APP_API}/api/v1`,
@@ -94,7 +94,7 @@ const ServicePage = () => {
       </div>
 
       {/* Section 3 */}
-      <div className='fluid-container service-cards-container'>
+      <div className='container service-cards-container'>
         <h1 style={{ fontSize: '4rem', marginLeft: '30px' }}>All Services From Us</h1>
         <hr style={{ width: '180px', borderTop: '8px dotted', marginLeft: '30px', paddingBottom: '3rem' }} />
         <div className='row'>
@@ -113,7 +113,7 @@ const ServicePage = () => {
         <div className='row'>
           {projectCards.map((projectCard, index) => (
             <div key={index} className="col-lg-6 col-md-4 col-sm-12 mb-3">
-              <ProjectCards image={`${process.env.REACT_APP_API}/api/v1/project-cards/card-photo/${projectCard._id}`} title={projectCard.title} text={projectCard.text} style={{ margin: '0 5px', padding: '10px' }} />
+              <MediaCard image={`${process.env.REACT_APP_API}/api/v1/project-cards/card-photo/${projectCard._id}`} title={projectCard.title} description={projectCard.text} style={{ margin: '0 5px', padding: '10px' }} />
             </div>
           ))}
         </div>
@@ -122,35 +122,16 @@ const ServicePage = () => {
         </Link>
       </div>
 
-      {/* Section 4 */}
-      <div className="container">
-        <h1 style={{ fontSize: '4rem' }}>Our Promise To You</h1>
-        <hr style={{ width: '180px', borderTop: '8px dotted', marginLeft: '10px', paddingBottom: '3rem' }} />
-        <div className="row" style={{ paddingTop: '30px' }}>
-          <div className="col-lg-6 col-md-6 col-sm-12">
-            <img className="imageService" width={'100%'} height={'100%'} src={section4Pic} alt="servicePicture" />
-          </div>
-          <div className="col-lg-6 col-md-6 col-sm-12 serviceContent">
-            <p style={{ fontSize: '1.2rem' }}>🚀 Welcome to MetaBot 🤖<br />
-              Experience, Excellence, and Exceptional Service – that's our promise.<br /><br />
-              🌟 Experienced Team: Trust our seasoned experts to bring your vision to life.<br />
-              🤝 Customer-Centric Approach: Your success is our priority, from start to finish.<br />
-              💡 Innovative Solutions: Embrace cutting-edge technology and forward-thinking strategies.<br />
-              🔒 Trust & Transparency: Count on us for open communication and reliable partnership.<br />
-              🌐 Global Reach, Local Touch: Wherever you are, we're here to deliver top-notch service.<br />
-              MetaBot: Your Partner in Digital Innovation.</p>
-          </div>
-        </div>
-      </div>
+      
 
 
-      <div className='fluid-container service-cards-container'>
+      <div className='container service-cards-container'>
         <h1 style={{ fontSize: '4rem', marginLeft: '30px' }}>Trainings By MetaBot</h1>
         <hr style={{ width: '180px', borderTop: '8px dotted', marginLeft: '30px', paddingBottom: '3rem' }} />
         <div className='row'>
           {trainingCards.map((card, index) => (
             <div key={index} className="col-lg-4 col-md-4 col-sm-12 mb-3">
-              <ServiceCard image={`${process.env.REACT_APP_API}/api/v1/training-cards/card-photo/${card._id}`} title={card.title} text={card.text} style={{ margin: '0 5px', padding: '10px' }} />
+              <MediaCard image={`${process.env.REACT_APP_API}/api/v1/training-cards/card-photo/${card._id}`} title={card.title} description={card.text} style={{ margin: '0 5px', padding: '10px' }} />
             </div>
           ))}
         </div>

@@ -1,25 +1,29 @@
-
-import Card from 'react-bootstrap/Card';
+import * as React from 'react';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { Box } from '@mui/material';
 
 export default function ProjectCards(props) {
-    
-
-
     return (
-        <div style={{ marginBottom: '20px' }}> {/* Add margin bottom for spacing between cards */}
-            <Card style={{ backgroundColor: 'beige', color: 'black' }}>
-                <Card.Img variant="top" src={props.image} style={{ width: '300px', height: '280px' }} />
-                <Card.Body>
-                    <Card.Text style={{ fontSize: '2rem' }}>
-                       {props.title}
-                    </Card.Text>
-                    <Card.Text style={{ fontSize: '1.2rem' }}>
-                       {props.text}
-                    </Card.Text>
-                </Card.Body>
+        <Box sx={{ marginBottom: 2, maxWidth: 600, mx: 'auto' }}> {/* Set container max width for horizontal card */}
+            <Card raised sx={{ display: 'flex', backgroundColor: '#fff', color: '#333', boxShadow: 3 }}>
+                <CardMedia
+                    component="img"
+                    sx={{ width: 300, objectFit: 'cover' }} // Decrease width for the image
+                    image={props.image}
+                    alt={props.title}
+                />
+                <CardContent sx={{ flex: '1' }}> {/* Flex property to use remaining space */}
+                    <Typography gutterBottom variant="h5" component="div">
+                        {props.title}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                        {props.text}
+                    </Typography>
+                </CardContent>
             </Card>
-        </div>
+        </Box>
     );
 }
-
-

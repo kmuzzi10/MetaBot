@@ -63,13 +63,37 @@
 }
 
 .section-3-row h3{
+  margin-top: 100px;
+  text-align: center;
   font-size: 3.3rem;
   padding-left: 40px;
   font-style: inherit;
 }
 .section-3-row p {
+  margin-top: 90px;
+  text-align: center;
   color: white;
   padding-right: 40px;
+}
+@media (max-width: 768px) {
+  .section-3-row h3{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 0;
+  }
+  .section-3-row p {
+    padding-bottom: 50px;
+    padding-right: 0;
+  }
+  
+}
+
+
+.section-3-row-1{
+  background-color: #03624C;
+}
+.section-3-row-2{
+  background-color: #2CC295;
 }
 
 .home-card {
@@ -170,7 +194,7 @@
 }
 
 .about-section1 {
-  text-align: center;
+  text-align: left;
   padding-top: 150px;
   padding-bottom: 100px;
   background: url(./assets/HomePagePics/homebackground.jpg) no-repeat;
@@ -178,7 +202,7 @@
 }
 
 .about-section1 h1 {
-  font-size: 4.5rem;
+  font-size: 4rem;
 }
 .about-section1 p {
   padding-top: 20px ;
@@ -219,23 +243,33 @@
 }
 
 .section-4-container-about {
-  background: url(./assets/HomePagePics/aboutPageImages/liquid-marbling-paint-texture-background-fluid-painting-abstract-texture-intensive-color-mix-wallpaper.jpg) no-repeat;
-  background-size: cover;
+  background-color: #03624C;
+  color: black;
   padding-top: 70px;
+  text-align: center;         /* Reset any margin */
+  box-sizing: border-box; /* Include padding in the width calculation */
+}
+
+.news-container{
+  background-color: #03624C;
+  color: black;
+}
+.news-container h1{
+  font-size: 3.9rem;
+  color: white;
   text-align: center;
 }
 
 
 
 
-
-
 .service-page-pic{
-  border-radius: 300px;
+  
   margin-top: 50px;
 }
 .service-cards-container{
   margin-top: 100px;
+  background-color: #03624C;
 }
 
 .imageService{
@@ -285,6 +319,7 @@
 }
 
 .about-heading-choose{
+  color: white;
   font-size: 5rem;
   margin-bottom: 20px;
 }

@@ -1,0 +1,67 @@
+/* HomePage.css */
+.visible {
+  opacity: 1;
+  transition: opacity 0.8s ease-out;
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-out;
+}
+
+.slide-in {
+  animation: slideIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.ubuntu-bold {
+  font-weight: bold; /* Adjust according to your font */
+}
+
+.ubuntu-medium {
+  font-weight: 500; /* Adjust according to your font */
+}
+
+.roboto-medium {
+  font-weight: 500; /* Adjust according to your font */
+}
+
+.roboto-regular {
+  font-weight: 400; /* Adjust according to your font */
+}
+
+.section-1, .section-3 {
+  padding: 50px 20px;
+}
+
+.homepageSection1 {
+  color: #AACBC4;
+}
+
+.section3-text {
+  font-size: 1rem;
+}
+
+.dev-row h1 {
+  text-align: center;
+  padding-top: 50px;
+}
+
+.swinger-class {
+  margin-top: 50px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .homepageSection1 h1, .homepageSection1 h2, .dev-row h1 {
+    text-align: center;
+  }
+}

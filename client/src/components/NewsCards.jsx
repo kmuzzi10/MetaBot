@@ -11,9 +11,9 @@ export default function NewsCards(props) {
     };
 
     return (
-        <div style={{ marginBottom: '20px', maxWidth: '400px' }}> {/* Set max width for smaller cards */}
-            <Card style={{ backgroundColor: 'beige', color: 'black' }}>
-                <div style={{ position: 'relative', overflow: 'hidden' }}>
+        <div style={{ marginBottom: '20px', maxWidth: '100%', display: 'flex', justifyContent: 'center' }}> {/* Adjust container for horizontal card */}
+            <Card style={{ backgroundColor: 'white', color: 'black', border: '1px solid #064420', display: 'flex', flexDirection: 'row', alignItems: 'center', width: '90%', maxWidth: '800px' }}> {/* Set up horizontal card */}
+                <div style={{ flex: '1 1 auto', maxWidth: '50%' }}>
                     <img
                         src={props.image}
                         alt=""
@@ -21,20 +21,18 @@ export default function NewsCards(props) {
                             width: '100%',
                             height: 'auto',
                             display: 'block',
-                            transition: 'transform 0.3s ease-in-out'
                         }}
                     />
                 </div>
-                <Card.Body>
-                    <Card.Text style={{ fontSize: '1.5rem' }}> {/* Reduce font size */}
+                <Card.Body style={{ flex: '1 1 auto', maxWidth: '50%' }}>
+                    <Card.Text style={{ fontSize: '1.5rem', color: 'black', fontWeight: 'bold' }}> {/* Large text in black */}
                         {props.title}
                     </Card.Text>
-                    <Card.Text style={{ fontSize: '1rem' }}> {/* Reduce font size */}
-                        {expanded ? props.text : `${props.text.substring(0, 100)}`}
+                    <Card.Text style={{ fontSize: '1rem', color: 'black' }}> {/* Smaller text in light grey */}
+                       {props.text}
                     </Card.Text>
-                    {/* Render "See More" link only if text length is greater than 100 */}
                     {props.text.length > 100 && (
-                        <Link onClick={handleSeeMoreClick} style={{ textDecoration: 'none', color: 'blue', cursor: 'pointer', fontSize: '1rem' }}> {/* Reduce font size */}
+                        <Link to="/all-news" onClick={handleSeeMoreClick} style={{ textDecoration: 'none', color: 'black', cursor: 'pointer', fontSize: '1rem' }}> {/* Green link */}
                             See More
                         </Link>
                     )}

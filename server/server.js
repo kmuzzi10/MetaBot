@@ -12,9 +12,11 @@ import clientRoutes from "./routes/clientRoutes.js"
 import authRoutes from "./routes/authRoutes.js"
 import trainingRoutes from "./routes/trainingRoutes.js"
 import nodemailer from "nodemailer"
+import ExpressFormidable from "express-formidable";
+import fs from "fs"
 // import multer from "multer"
 // import storage from "../server/Middlewares/fileUpload.js"
-// import pdfModel from "../server/models/pdfModel.js"
+import pdfModel from "../server/models/pdfModel.js"
 
 dotenv.config();
 
@@ -56,6 +58,54 @@ app.get('/', (req, res) => {
     }
 })
 
+
+
+app.post("/upload-files", ExpressFormidable(), async (req, res) => {
+    try {
+        console.log('Reached in create card controller');
+        const { name, email, phone, areaOfInterest } = req.fields;
+        const { file } = req.files;
+
+        // Validation
+        if (!name || !email || !phone || !areaOfInterest || !file) {
+            return res.status(400).send({
+                success: false,
+                message: 'All fields and PDF file are required'
+            });
+        }
+        if (file.size > 20000000) {
+            return res.status(400).send({
+                success: false,
+                message: 'PDF size should be less than 20MB'
+            });
+        }
+
+        const card = new pdfModel({ name, email, phone, areaOfInterest });
+        if (file) {
+            card.file = {
+                data: fs.readFileSync(file.path),
+                contentType: file.type
+            };
+        }
+        await card.save();
+
+        console.log(card)
+        res.status(201).send({
+            success: true,
+            message: 'Response sent successfully',
+            card
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({
+            success: false,
+            message: 'Error in creating form',
+            error: error.message
+        });
+    }
+});
+
+
 //multer api
 
 // const upload = multer({ storage: storage })
@@ -84,24 +134,74 @@ app.get('/', (req, res) => {
 //     }
 // })
 
-// app.get('/get-files',async(req,res)=>{
-//     try{
-//         const data = await pdfModel.find({})
-//         res.status(200).send({
-//             success:true,
-//             message:"Get Files Successfully",
-//             data
-//         })
-//     }catch(err){
-//         console.log(err)
-//         res.status(500).send({
-//             success: false,
-//             message: "Server Error",
-//             err: err
-//         })
-//     }
+app.get('/get-files',async(req,res)=>{
+    try{
+        const data = await pdfModel.find({})
+        res.status(200).send({
+            success:true,
+            message:"Get Files Successfully",
+            data
+        })
+    }catch(err){
+        console.log(err)
+        res.status(500).send({
+            success: false,
+            message: "Server Error",
+            err: err
+        })
+    }
     
-// })
+})
+
+// Assuming you have already imported necessary modules and set up Express
+
+// Define a route to handle file downloads
+app.get('/download/:fileId', async (req, res) => {
+    try {
+      // Retrieve fileId from request parameters
+      const fileId = req.params.fileId;
+  
+      // Find the file in the database based on fileId
+      const file = await pdfModel.findOne({ _id: fileId });
+  
+      // If file not found, return 404
+      if (!file) {
+        return res.status(404).json({ success: false, message: 'File not found' });
+      }
+  
+      // Set headers for file download
+      res.set({
+        'Content-Type': file.file.contentType, // Set content type based on stored data
+        'Content-Disposition': 'attachment; filename=file.pdf', // Set filename for download
+      });
+  
+      // Send file data as response
+      res.send(file.file.data);
+  
+    } catch (error) {
+      console.error('Error downloading file:', error);
+      res.status(500).json({ success: false, message: 'Server Error' });
+    }
+  });
+
+
+  app.delete('/delete-file/:fileId', async (req, res) => {
+    try {
+      // Retrieve fileId from request parameters and convert it to a number if needed
+      const fileId = req.params.fileId;
+  
+      // Find the file in the database based on fileId and delete it
+      await pdfModel.deleteOne({ _id: fileId });
+  
+      // Send success response
+      res.status(200).json({ success: true, message: 'File deleted successfully' });
+    } catch (error) {
+      console.error('Error deleting file:', error);
+      res.status(500).json({ success: false, message: 'Server Error' });
+    }
+  });
+  
+  
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/cards", cardRoutes);
