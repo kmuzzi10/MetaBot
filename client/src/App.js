@@ -31,6 +31,10 @@ import UpdateTrainingCard from "./AdminPages/UpdateAndGetTrainingCards/UpdateTra
 import CreateTrainingCard from "./AdminPages/pages/CreateTrainingCard";
 import UploadPdf from "./pages/UploadPdf";
 import PdfViewer from "../src/AdminPages/pdfViewer/PdfViewer"
+import JoinOurTeam from "./pages/JoinOurTeam";
+import GetJobCard from "./AdminPages/updateAndGetJobCards/GetJobCard";
+import UpdateJobCard from "./AdminPages/updateAndGetJobCards/UpdateJobCard";
+import CreateJobCard from "./AdminPages/pages/CreateJobCard";
 
 function App() {
   const location = useLocation();
@@ -52,7 +56,8 @@ function App() {
       <Route path="/all-services" element={<AllServices />} />
       <Route path="/all-news" element={<AllNews />} />
       <Route path="/all-projects" element={<AllProjects />} />
-      <Route path="/upload-pdf" element={<UploadPdf />} />
+      <Route path="/join-our-team" element={<JoinOurTeam />} />
+      <Route path="/upload-pdf/:id" element={<UploadPdf />} />
       <Route path="/admin-login-metabot" element={<LoginForm />} />
       <Route path="/admin-login-metabot-forgot-password" element={<ForgotPassword/>} />
       {isLoggedIn && (
@@ -65,6 +70,7 @@ function App() {
           <Route path="/dashboard-admin/create-home-card" element={<CreateHomeCard />} />
           <Route path="/dashboard-admin/create-project-card" element={<CreateProjectCard />} />
           <Route path="/dashboard-admin/create-training-card" element={<CreateTrainingCard />} />
+          <Route path="/dashboard-admin/create-job-card" element={<CreateJobCard />} />
           <Route path="/dashboard-admin/get-card" element={<Cards />} />
           <Route path="/dashboard-admin/update-card/:id" element={<UpdateCard />} />
           <Route path="/dashboard-admin/get-client-card" element={<GetClientCard />} />
@@ -77,6 +83,8 @@ function App() {
           <Route path="/dashboard-admin/update-project-card/:id" element={<UpdateProjectCard />} />
           <Route path="/dashboard-admin/get-training-card" element={<GetTrainingCard />} />
           <Route path="/dashboard-admin/update-training-card/:id" element={<UpdateTrainingCard />} />
+          <Route path="/dashboard-admin/get-job-card" element={<GetJobCard />} />
+          <Route path="/dashboard-admin/update-job-card/:id" element={<UpdateJobCard />} />
         </>
       )}
     </Routes>

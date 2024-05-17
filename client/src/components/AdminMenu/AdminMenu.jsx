@@ -15,12 +15,14 @@ const AdminMenu = () => {
                     <NavLink to='/dashboard-admin/create-home-card' className="list-group-item list-group-item-action">Create Home Page Cards</NavLink>
                     <NavLink to='/dashboard-admin/create-project-card' className="list-group-item list-group-item-action">Create Project Cards</NavLink>
                     <NavLink to='/dashboard-admin/create-training-card' className="list-group-item list-group-item-action">Create Training Cards</NavLink>
+                    <NavLink to='/dashboard-admin/create-job-card' className="list-group-item list-group-item-action">Create Job Cards</NavLink>
                     <NavLink to='/dashboard-admin/get-card' className="list-group-item list-group-item-action">Get Service Cards</NavLink>
                     <NavLink to='/dashboard-admin/get-client-card' className="list-group-item list-group-item-action">Get Client Cards</NavLink>
                     <NavLink to='/dashboard-admin/get-home-card' className="list-group-item list-group-item-action">Get Home Cards</NavLink>
                     <NavLink to='/dashboard-admin/get-news-card' className="list-group-item list-group-item-action">Get News Cards</NavLink>
                     <NavLink to='/dashboard-admin/get-project-card' className="list-group-item list-group-item-action">Get Project Cards</NavLink>
                     <NavLink to='/dashboard-admin/get-training-card' className="list-group-item list-group-item-action">Get Training Cards</NavLink>
+                    <NavLink to='/dashboard-admin/get-job-card' className="list-group-item list-group-item-action">Get Jobs Cards</NavLink>
 
 
                 </div>

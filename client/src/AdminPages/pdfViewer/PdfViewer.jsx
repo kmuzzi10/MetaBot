@@ -29,7 +29,7 @@ const PdfViewer = () => {
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement('a');
       link.href = url;
-      link.setAttribute('download', 'file.pdf'); // Change the file name if needed
+      link.setAttribute('download', 'file.pdf'); // Optionally, you can set file name dynamically based on file data
       document.body.appendChild(link);
       link.click();
       link.parentNode.removeChild(link);
@@ -59,38 +59,46 @@ const PdfViewer = () => {
             </div>
             <div className='col-lg-9 col-md-9 col-sm-8'>
               <h1 style={{ fontSize: '3rem' }} className='text-center'>All Training Data List</h1>
-              <table className='table'>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Area of Interest</th>
-                    <th>File</th>
-                    <th>Actions</th> {/* Add a new table header for actions */}
-                  </tr>
-                </thead>
-                <tbody>
-                  {files.map((file) => (
-                    <tr key={file._id}>
-                      <td>{file.name}</td>
-                      <td>{file.email}</td>
-                      <td>{file.phone}</td>
-                      <td>{file.areaOfInterest}</td>
-                      <td>
-                        <button onClick={() => downloadFile(file._id)} className="btn btn-primary">
-                          Download
-                        </button>
-                      </td>
-                      <td>
-                        <button onClick={() => deleteFile(file._id)} className="btn btn-danger">
-                          Delete
-                        </button>
-                      </td>
+              <div className='table-responsive'>
+                <table className='table'>
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Phone</th>
+                      <th>Job Postion</th>
+                      <th>Description</th>
+                      <th>Skills</th>
+                      <th>Education</th>
+                      <th>Resume</th>
+                      <th>Actions</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {files.map((file) => (
+                      <tr key={file._id}>
+                        <td>{file.name}</td>
+                        <td>{file.email}</td>
+                        <td>{file.phone}</td>
+                        <td>{file.areaOfInterest}</td>
+                        <td>{file.description}</td>
+                        <td>{file.skills}</td>
+                        <td>{file.education}</td>
+                        <td>
+                          <button onClick={() => downloadFile(file._id)} className="btn btn-primary">
+                            Download
+                          </button>
+                        </td>
+                        <td>
+                          <button onClick={() => deleteFile(file._id)} className="btn btn-danger">
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>

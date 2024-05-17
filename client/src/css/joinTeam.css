@@ -1,0 +1,11 @@
+.team-row{
+    padding-top: 100px;
+    text-align: center;
+}
+
+.team-row h1{
+    font-size: 3rem;
+}
+.team-row h3{
+    font-size: 1.4rem;
+}

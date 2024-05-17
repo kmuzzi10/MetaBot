@@ -1,24 +1,38 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
-
-//card model
-
+// PDF upload model
 const PdfModelSchema = new mongoose.Schema({
     Id: {
         type: Number,
-        unique: true
+        unique: true,
     },
     name: {
-        type: String
+        type: String,
+        required: true
     },
     email: {
-        type: String
+        type: String,
+        required: true
     },
     phone: {
-        type: Number
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    skills: {
+        type: String,
+        required: true
+    },
+    education: {
+        type: String,
+        required: true
     },
     areaOfInterest: {
-        type: String
+        type: String,
+        required: true
     },
     file: {
         data: Buffer,
@@ -26,12 +40,13 @@ const PdfModelSchema = new mongoose.Schema({
     }
 });
 
+// Auto-increment for Id field before saving a new document
 PdfModelSchema.pre('save', async function (next) {
-    if (!this.Id) {
-        const lastCard = await this.constructor.findOne({}, {}, { sort: { 'Id': -1 } });
-        this.Id = lastCard ? lastCard.Id + 1 : 1;
-    }
+    if (!this.isNew) return next();
+    
+    const lastEntry = await this.constructor.findOne({}, {}, { sort: { 'Id': -1 } });
+    this.Id = lastEntry ? lastEntry.Id + 1 : 1;
     next();
 });
 
-export default mongoose.model('Pdfupload', PdfModelSchema);
+export default mongoose.model('PdfUpload', PdfModelSchema);

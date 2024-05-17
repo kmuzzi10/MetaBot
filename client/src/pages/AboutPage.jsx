@@ -6,11 +6,11 @@ import AboutServiceCards from '../components/AboutServiceCards';
 import NewsCards from '../components/NewsCards';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import innovationPic from "../assets/HomePagePics/aboutPageImages/cardImages/innovation.jpg"
-import experiencePic from "../assets/HomePagePics/aboutPageImages/cardImages/experience.jpg"
-import reliablePic from "../assets/HomePagePics/aboutPageImages/cardImages/reliable.jpg"
-import integrationPic from "../assets/HomePagePics/aboutPageImages/cardImages/integration.jpg"
-import servicePic from "../assets/HomePagePics/aboutPageImages/cardImages/service.jpg"
+import innovationPic from "../assets/HomePagePics/aboutPageImages/cardImages/innovation.jpg";
+import experiencePic from "../assets/HomePagePics/aboutPageImages/cardImages/experience.jpg";
+import reliablePic from "../assets/HomePagePics/aboutPageImages/cardImages/reliable.jpg";
+import integrationPic from "../assets/HomePagePics/aboutPageImages/cardImages/integration.jpg";
+import servicePic from "../assets/HomePagePics/aboutPageImages/cardImages/service.jpg";
 import section4Pic from "../assets/HomePagePics/servicesImages/52.jpg";
 
 axios.defaults.withCredentials = true;
@@ -22,6 +22,39 @@ const AboutPage = () => {
   const [cards, setCards] = useState([]);
   const [newsCards, setNewsCards] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const mediaCardData = [
+    {
+      image: innovationPic,
+      title: 'Personalized Service',
+      description: 'Receive dedicated attention and customized strategies to address your specific business challenges and goals',
+    },
+    {
+      image: experiencePic,
+      title: 'Seamless Integration',
+      description: 'Ensure smooth compatibility and effortless integration with your existing systems and workflows',
+    },
+    {
+      image: reliablePic,
+      title: 'Proven Excellence',
+      description: 'Trust our track record of delivering successful projects across diverse industries, backed by a commitment to your success.',
+    },
+    {
+      image: integrationPic,
+      title: 'Innovative Solutions',
+      description: 'Elevate your business with cutting-edge technology tailored to your unique requirements',
+    },
+    {
+      image: servicePic,
+      title: 'Reliable Performance',
+      description: 'Experience dependable software solutions engineered for excellence, reliability, and scalability',
+    },
+    {
+      image: servicePic,
+      title: 'Optimized Results',
+      description: 'Cost and resource optimized software solutions that are efficient in working',
+    },
+  ];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -65,54 +98,15 @@ const AboutPage = () => {
         <SwingerTwo />
       </div>
 
-      {/* Section 3 */}
-      {/* <div className="container section-3-about">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-6 col-md-6 col-sm-6">
-              <h4 style={{ color: '#C3FF93' }}>
-                <u>Our Services</u>
-              </h4>
-              <h1>We Offer A Wide <br /> Variety Of IT Services</h1>
-            </div>
-            <div className="col-lg-6 col-md-6 col-sm-6">
-              <Link to="/all-services">
-                <button type="button" className="btn btn-lg custom-btn about-button">Show All Services</button>
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div className="row about-cards-row">
-          {cards.map((a, index) => (
-            <div key={index} className="col-lg-4 col-md-6 col-sm-12 section-4-container-row mb-3 mt-4">
-              <AboutServiceCards image={`${process.env.REACT_APP_API}/api/v1/cards/card-photo/${a._id}`} title={a.title} text={a.text} style={{ margin: '0 5px', padding: '10px' }} />
-            </div>
-          ))}
-        </div>
-      </div> */}
-
       {/* Section 4 */}
       <div className="container section-4-container-about">
         <h1 className='about-heading-choose'>Why Choose Us</h1>
         <div className="row about-row">
-          <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
-            <MediaCard image={servicePic} title={'Personalized Service'} description={'Receive dedicated attention and customized strategies to address your specific business challenges and goals'} />
-          </div>
-          <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
-            <MediaCard image={integrationPic} title={'Seamless Integration'} description={'Ensure smooth compatibility and effortless integration with your existing systems and workflows'} />
-          </div>
-          <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
-            <MediaCard image={experiencePic} title={'Proven Excellence'} description={'Trust our track record of delivering successful projects across diverse industries, backed by a commitment to your success.'} />
-          </div>
-          <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
-            <MediaCard image={innovationPic} title={'Innovative Solutions'} description={'Elevate your business with cutting-edge technology tailored to your unique requirements'} />
-          </div>
-          <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
-            <MediaCard image={reliablePic} title={'Reliable Performance'} description={'Experience dependable software solutions engineered for excellence, reliability, and scalability'} />
-          </div>
-          <div className="col-lg-4 col-md-6 col-sm-12 mb-3">
-            <MediaCard image={reliablePic} title={'Optimized Results'} description={'Cost and Resource optimized software solution that are efficient in working'} />
-          </div>
+          {mediaCardData.map((data, index) => (
+            <div key={index} className="col-lg-4 col-md-6 col-sm-12 mb-3">
+              <MediaCard image={data.image} title={data.title} description={data.description} />
+            </div>
+          ))}
         </div>
       </div>
 
@@ -138,11 +132,11 @@ const AboutPage = () => {
       </div>
 
       {/* Section 5 */}
-      <div style={{marginTop:'100px'}} className="fluid-container news-container">
+      <div style={{ marginTop: '100px' }} className="fluid-container news-container">
         <h1>Latest News From Our Side</h1>
         <hr style={{ width: '180px', borderTop: '8px dotted white', margin: '0 auto' }} />
 
-        <div style={{marginTop:'20px'}} className="row">
+        <div style={{ marginTop: '20px' }} className="row">
           {newsCards.map((a, index) => (
             <div key={index} className="col-lg-6 col-md-12 col-sm-12">
               <NewsCards image={`${process.env.REACT_APP_API}/api/v1/news-cards/card-photo/${a._id}`} text={a.text} title={a.title} />
