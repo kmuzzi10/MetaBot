@@ -7,6 +7,7 @@ import { CardActionArea } from '@mui/material';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios"
+import moment from "moment"
 
 axios.defaults.withCredentials = true;
 const axiosInstance = axios.create({
@@ -34,10 +35,10 @@ export default function JobCard(props) {
         gettingCards();
     }, [gettingCards]);
 
-    const handleApplyClick = () => {
-        cards.forEach(a => {
-            navigate(`/upload-pdf/${a._id}`);
-        });
+    const handleApplyClick = (id) => {
+
+        navigate(`/upload-pdf/${id}`);
+
     };
 
     return (
@@ -54,12 +55,6 @@ export default function JobCard(props) {
             }}
         >
             <CardActionArea>
-                <CardMedia
-                    component="img"
-                    height="350"
-                    image={props.image}
-                    alt={props.title}
-                />
                 <CardContent>
                     <Typography
                         gutterBottom
@@ -82,6 +77,16 @@ export default function JobCard(props) {
                     >
                         {props.text}
                     </Typography>
+                    <Typography
+                        variant="body2"
+                        color="text.secondary"
+                        sx={{
+                            mb: 2,
+                            color: '#666',
+                        }}
+                    >
+                        Last Date To Apply {props.date}
+                    </Typography>
                     <Button
                         variant="contained"
                         color="success"
@@ -92,7 +97,7 @@ export default function JobCard(props) {
                                 backgroundColor: '#218838',
                             },
                         }}
-                        onClick={handleApplyClick}
+                        onClick={() => handleApplyClick(props.id)}
                     >
                         Apply Now!
                     </Button>

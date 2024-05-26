@@ -4,7 +4,7 @@ import fs from "fs"
 export const createCardController = async (req, res) => {
     try {
         console.log('Reached in create card controller')
-        const { title, text } = req.fields
+        const { title, text ,date } = req.fields
         const { image } = req.files
 
         //validation
@@ -18,6 +18,12 @@ export const createCardController = async (req, res) => {
             return res.status(500).send({
                 success: false,
                 message: 'Description is required'
+            })
+        }
+        if (!date) {
+            return res.status(500).send({
+                success: false,
+                message: 'Date is required'
             })
         }
         if (image && image.size > 205800000000000000) {
@@ -120,7 +126,7 @@ export const cardPhotoController = async (req, res) => {
 export const updateCardController = async (req, res) => {
     try {
         console.log('Reached in update Card controller')
-        const { title, text } = req.fields
+        const { title, text ,date } = req.fields
         const { image } = req.files
 
         //validation
@@ -131,6 +137,12 @@ export const updateCardController = async (req, res) => {
             })
         }
         if (!text) {
+            return res.status(500).send({
+                success: false,
+                message: 'text is required'
+            })
+        }
+        if (!date) {
             return res.status(500).send({
                 success: false,
                 message: 'text is required'

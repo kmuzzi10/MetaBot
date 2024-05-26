@@ -379,3 +379,8 @@
 
   
 }
+
+
+.list-group-item-action.text-white:hover {
+  background-color:black;
+}

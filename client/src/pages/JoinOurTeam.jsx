@@ -4,6 +4,9 @@ import "../css/joinTeam.css";
 import JobCard from '../components/jobCard';
 import axios from 'axios';
 import { motion } from 'framer-motion';
+import moment from 'moment';
+
+import { useNavigate } from 'react-router-dom';
 
 axios.defaults.withCredentials = true;
 const axiosInstance = axios.create({
@@ -11,6 +14,7 @@ const axiosInstance = axios.create({
 });
 
 const JoinOurTeam = () => {
+    const navigate = useNavigate()
     const [cards, setCards] = useState([]);
     const [isTextVisible, setIsTextVisible] = useState(false);
 
@@ -31,6 +35,9 @@ const JoinOurTeam = () => {
         gettingCards();
         window.scrollTo(0, 0);
     }, [gettingCards]);
+
+   
+
 
     return (
         <Layout>
@@ -58,12 +65,15 @@ const JoinOurTeam = () => {
                 </motion.div>
             </div>
             <div className='container'>
-                <div className='row'>
+                <div style={{ textAlign: 'center' }} className='row'>
                     {cards.map((card) => (
-                        <div key={card._id} className='col-lg-6 col-md-6 col-sm-12'>
-                            <JobCard image={`${process.env.REACT_APP_API}/api/v1/job-cards/card-photo/${card._id}`} title={card.title} text={card.text} />
+                        <div key={card._id} className='col-lg-6 col-md-6 col-sm-12 mt-4'>
+                            <JobCard id={card._id} title={card.title} text={card.text} date={moment(card.date).format('MMMM Do, YYYY')} />
+                            
                         </div>
                     ))}
+                    
+
                 </div>
             </div>
         </Layout>

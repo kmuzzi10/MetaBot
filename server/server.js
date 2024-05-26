@@ -61,68 +61,68 @@ app.get('/', (req, res) => {
 
 
 
-app.post("/upload-files", ExpressFormidable(), async (req, res) => {
-    try {
-        const { name, email, phone, areaOfInterest, description, skills, education } = req.fields;
-        const { file } = req.files;
+// app.post("/upload-files", ExpressFormidable(), async (req, res) => {
+//     try {
+//         const { name, email, phone, areaOfInterest, description, skills, education } = req.fields;
+//         const { file } = req.files;
 
-        // Check if the user has already applied for this area of interest
-        const existingApplication = await pdfModel.findOne({ email, areaOfInterest });
-        if (existingApplication) {
-            return res.status(400).send({
-                success: false,
-                message: 'You have already applied for this Job Application'
-            });
-        }
+//         // Check if the user has already applied for this area of interest
+//         const existingApplication = await pdfModel.findOne({ email, areaOfInterest });
+//         if (existingApplication) {
+//             return res.status(400).send({
+//                 success: false,
+//                 message: 'You have already applied for this Job Application'
+//             });
+//         }
 
-        // Check all required fields
-        if (!name || !email || !phone || !areaOfInterest || !description || !skills || !education || !file) {
-            return res.status(400).send({
-                success: false,
-                message: 'All fields including PDF file are required.'
-            });
-        }
+//         // Check all required fields
+//         if (!name || !email || !phone || !areaOfInterest || !description || !skills || !education || !file) {
+//             return res.status(400).send({
+//                 success: false,
+//                 message: 'All fields including PDF file are required.'
+//             });
+//         }
 
-        // File size validation
-        if (file.size > 20000000) { // 20MB limit
-            return res.status(400).send({
-                success: false,
-                message: 'PDF size should be less than 20MB.'
-            });
-        }
+//         // File size validation
+//         if (file.size > 20000000) { // 20MB limit
+//             return res.status(400).send({
+//                 success: false,
+//                 message: 'PDF size should be less than 20MB.'
+//             });
+//         }
 
-        // Create new PDF upload entry
-        const card = new pdfModel({
-            name,
-            email,
-            phone,
-            areaOfInterest,
-            description,
-            skills,
-            education,
-            file: {
-                data: fs.readFileSync(file.path),
-                contentType: file.type
-            }
-        });
+//         // Create new PDF upload entry
+//         const card = new pdfModel({
+//             name,
+//             email,
+//             phone,
+//             areaOfInterest,
+//             description,
+//             skills,
+//             education,
+//             file: {
+//                 data: fs.readFileSync(file.path),
+//                 contentType: file.type
+//             }
+//         });
 
-        // Save the new PDF upload entry
-        await card.save();
+//         // Save the new PDF upload entry
+//         await card.save();
 
-        res.status(201).send({
-            success: true,
-            message: 'Application submitted successfully.',
-            card: card
-        });
-    } catch (error) {
-        console.error('Upload Error:', error);
-        res.status(500).send({
-            success: false,
-            message: 'Error in processing the application.',
-            error: error.message
-        });
-    }
-});
+//         res.status(201).send({
+//             success: true,
+//             message: 'Application submitted successfully.',
+//             card: card
+//         });
+//     } catch (error) {
+//         console.error('Upload Error:', error);
+//         res.status(500).send({
+//             success: false,
+//             message: 'Error in processing the application.',
+//             error: error.message
+//         });
+//     }
+// });
 
 
 //multer api
@@ -153,6 +153,81 @@ app.post("/upload-files", ExpressFormidable(), async (req, res) => {
 //     }
 // })
 
+app.post("/upload-files", ExpressFormidable(), async (req, res) => {
+    try {
+        const { name, email, phone, areaOfInterest, description, skills, education } = req.fields;
+        const { file, coverLetter } = req.files;
+
+        // Check if the user has already applied for this area of interest
+        const existingApplication = await pdfModel.findOne({ email, areaOfInterest });
+        if (existingApplication) {
+            return res.status(400).send({
+                success: false,
+                message: 'You have already applied for this Job Application'
+            });
+        }
+
+        // Check all required fields
+        if (!name || !email || !phone || !areaOfInterest || !description || !skills || !education || !file || !coverLetter) {
+            return res.status(400).send({
+                success: false,
+                message: 'All fields including PDF files are required.'
+            });
+        }
+
+        // File size validation for resume
+        if (file.size > 20000000) { // 20MB limit
+            return res.status(400).send({
+                success: false,
+                message: 'Resume PDF size should be less than 20MB.'
+            });
+        }
+
+        // File size validation for cover letter
+        if (coverLetter.size > 20000000) { // 20MB limit
+            return res.status(400).send({
+                success: false,
+                message: 'Cover Letter PDF size should be less than 20MB.'
+            });
+        }
+
+        // Create new PDF upload entry
+        const card = new pdfModel({
+            name,
+            email,
+            phone,
+            areaOfInterest,
+            description,
+            skills,
+            education,
+            file: {
+                data: fs.readFileSync(file.path),
+                contentType: file.type
+            },
+            coverLetter: {
+                data: fs.readFileSync(coverLetter.path),
+                contentType: coverLetter.type
+            }
+        });
+
+        // Save the new PDF upload entry
+        await card.save();
+
+        res.status(201).send({
+            success: true,
+            message: 'Application submitted successfully.',
+            card: card
+        });
+    } catch (error) {
+        console.error('Upload Error:', error);
+        res.status(500).send({
+            success: false,
+            message: 'Error in processing the application.',
+            error: error.message
+        });
+    }
+});
+
 app.get('/get-files', async (req, res) => {
     try {
         const data = await pdfModel.find({})
@@ -175,10 +250,40 @@ app.get('/get-files', async (req, res) => {
 // Assuming you have already imported necessary modules and set up Express
 
 // Define a route to handle file downloads
+// app.get('/download/:fileId', async (req, res) => {
+//     try {
+//         // Retrieve fileId from request parameters
+//         const fileId = req.params.fileId;
+
+//         // Find the file in the database based on fileId
+//         const file = await pdfModel.findOne({ _id: fileId });
+
+//         // If file not found, return 404
+//         if (!file) {
+//             return res.status(404).json({ success: false, message: 'File not found' });
+//         }
+
+//         // Set headers for file download
+//         res.set({
+//             'Content-Type': file.file.contentType, // Set content type based on stored data
+//             'Content-Disposition': 'attachment; filename=file.pdf', // Set filename for download
+//         });
+
+//         // Send file data as response
+//         res.send(file.file.data);
+
+//     } catch (error) {
+//         console.error('Error downloading file:', error);
+//         res.status(500).json({ success: false, message: 'Server Error' });
+//     }
+// });
+
 app.get('/download/:fileId', async (req, res) => {
     try {
         // Retrieve fileId from request parameters
         const fileId = req.params.fileId;
+        // Retrieve fileType from query parameters
+        const fileType = req.query.type;
 
         // Find the file in the database based on fileId
         const file = await pdfModel.findOne({ _id: fileId });
@@ -188,14 +293,28 @@ app.get('/download/:fileId', async (req, res) => {
             return res.status(404).json({ success: false, message: 'File not found' });
         }
 
+        let fileData;
+        let contentType;
+
+        // Determine which file to download based on fileType query parameter
+        if (fileType === 'resume') {
+            fileData = file.file.data;
+            contentType = file.file.contentType;
+        } else if (fileType === 'coverLetter') {
+            fileData = file.coverLetter.data;
+            contentType = file.coverLetter.contentType;
+        } else {
+            return res.status(400).json({ success: false, message: 'Invalid file type requested' });
+        }
+
         // Set headers for file download
         res.set({
-            'Content-Type': file.file.contentType, // Set content type based on stored data
-            'Content-Disposition': 'attachment; filename=file.pdf', // Set filename for download
+            'Content-Type': contentType, // Set content type based on stored data
+            'Content-Disposition': `attachment; filename=${fileType}.pdf`, // Set filename for download
         });
 
         // Send file data as response
-        res.send(file.file.data);
+        res.send(fileData);
 
     } catch (error) {
         console.error('Error downloading file:', error);

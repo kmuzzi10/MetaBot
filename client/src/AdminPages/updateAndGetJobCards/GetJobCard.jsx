@@ -3,6 +3,7 @@ import AdminMenu from '../../components/AdminMenu/AdminMenu';
 import Layout from '../../Layout/Layout';
 import axios from "axios";
 import { Link } from "react-router-dom";
+import moment from 'moment';
 axios.defaults.withCredentials = true;
 const GetJobCard = () => {
     const [card, setCard] = useState([]);
@@ -39,13 +40,13 @@ const GetJobCard = () => {
                         <h1 style={{fontSize:'3rem'}} className='text-center'>All Job Cards List</h1>
                         <div className='row'>
                             {card.map(p => (
-                                <div key={p._id} className='col-xl-4 col-lg-4 col-md-6 col-sm-12'>
+                                <div  key={p._id} className='col-xl-4 col-lg-4 col-md-6 col-sm-12'>
                                     <Link to={`/dashboard-admin/update-job-card/${p._id}`} className='card-link'>
-                                        <div className="card m-3" style={{ width: '100%' }}>
-                                            <img src={`${process.env.REACT_APP_API}/api/v1/job-cards/card-photo/${p._id}`} className="card-img-top" alt={p.title} />
+                                        <div  className="card m-3" style={{ width: '100%',backgroundColor:'white',color:'black' }}>
                                             <div className="card-body" style={{ maxHeight: '200px', overflow: 'auto' }}>
-                                                <h5 className="card-title">{p.title}</h5>
-                                                <p className="card-text">{p.text}</p>
+                                                <h5 className="card-title">Job Title <br />{p.title}</h5>
+                                                <p className="card-text">Description <br />{p.text}</p>
+                                                <p className="card-text">Date <br />{moment(p.date).format('MMMM Do, YYYY')}</p>
                                             </div>
                                         </div>
                                     </Link>

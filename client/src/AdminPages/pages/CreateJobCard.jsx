@@ -1,39 +1,41 @@
-import React, { useState, useEffect } from 'react'
-import Layout from '../../Layout/Layout'
-import axios from "axios"
-import AdminMenu from '../../components/AdminMenu/AdminMenu'
-import { Select } from "antd"
-const { Option } = Select
-// import { useNavigate } from "react-router-dom"
+import React, { useState } from 'react';
+import Layout from '../../Layout/Layout';
+import axios from 'axios';
+import AdminMenu from '../../components/AdminMenu/AdminMenu';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+
 axios.defaults.withCredentials = true;
-
 const CreateJobCard = () => {
-    // const navigate = useNavigate()
-    const [title, setTitle] = useState("")
-    const [text, setText] = useState("")
-    const [image, setImage] = useState("")
-
+    const [title, setTitle] = useState('');
+    const [text, setText] = useState('');
+    const [date, setDate] = useState(null);
 
     const handleCreate = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         try {
-            const productData = new FormData()
-            productData.append("title", title)
-            productData.append("text", text)
-            productData.append("image", image)
+            const productData = new FormData();
+            productData.append('title', title);
+            productData.append('text', text);
+            if (date) {
+                productData.append('date', date.toISOString());
+            }
 
-            const { data } = axios.post(`${process.env.REACT_APP_API}/api/v1/job-cards/create-card`, productData)
+            const { data } = await axios.post(`${process.env.REACT_APP_API}/api/v1/job-cards/create-card`, productData);
             if (data?.success) {
-                alert(data?.message)
+                alert('Card Created Successfully');
             } else {
-
-                alert("Card Created Successfully")
+                alert('Card Created Successfully');
             }
         } catch (error) {
-            console.log(error)
-            alert('Something Went Wrong')
+            console.log(error);
+            alert('Something Went Wrong');
         }
-    }
+    };
+
+    const handleDateChange = (date) => {
+        setDate(date);
+    };
 
     return (
         <Layout title={'Create Card'}>
@@ -46,21 +48,13 @@ const CreateJobCard = () => {
                         <h1 style={{ fontSize: '4rem' }}>Create Job Cards</h1>
                         <div className='m-1 w-75'>
                             <div className='mb-3'>
-                                <label className='btn btn-outline-secondary'>
-                                    {image ? image.name : "Upload Photo"}
-                                    <input type='file' name='photo' accept='image/*' onChange={(e) => setImage(e.target.files[0])} hidden />
-                                </label>
-                            </div>
-                            <div className='mb-3'>
-                                {image && (
-                                    <div className='text-center'>
-                                        <img src={URL.createObjectURL(image)} alt="product-photo" height={'200px'} className='img img-responsive' />
-
-                                    </div>
-                                )}
-                            </div>
-                            <div className='mb-3'>
-                                <input type='text' placeholder='Enter Title of Card' className='form-control' value={title} onChange={(e) => setTitle(e.target.value)} />
+                                <input
+                                    type='text'
+                                    placeholder='Enter Title of Card'
+                                    className='form-control'
+                                    value={title}
+                                    onChange={(e) => setTitle(e.target.value)}
+                                />
                             </div>
                             <div className='mb-3' style={{ maxHeight: '200px', overflowY: 'auto' }}>
                                 <textarea
@@ -72,16 +66,25 @@ const CreateJobCard = () => {
                                 />
                             </div>
                             <div className='mb-3'>
-                                <button className='btn btn-primary' onClick={handleCreate}>Add Card</button>
+                                <DatePicker
+                                    className='form-control'
+                                    selected={date}
+                                    onChange={handleDateChange}
+                                    dateFormat='yyyy-MM-dd'
+                                    placeholderText='Select a date'
+                                />
                             </div>
-
-
+                            <div className='mb-3'>
+                                <button className='btn btn-primary' onClick={handleCreate}>
+                                    Add Job Post
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </Layout>
-    )
-}
+    );
+};
 
-export default CreateJobCard
+export default CreateJobCard;

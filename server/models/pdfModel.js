@@ -37,6 +37,10 @@ const PdfModelSchema = new mongoose.Schema({
     file: {
         data: Buffer,
         contentType: String
+    },
+    coverLetter: {
+        data: Buffer,
+        contentType: String
     }
 });
 

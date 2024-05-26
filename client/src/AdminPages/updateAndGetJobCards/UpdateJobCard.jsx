@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '../../Layout/Layout';
-import axios from "axios";
+import axios from 'axios';
 import AdminMenu from '../../components/AdminMenu/AdminMenu';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import { useNavigate, useParams } from 'react-router-dom';
 
 axios.defaults.withCredentials = true;
@@ -9,37 +11,37 @@ axios.defaults.withCredentials = true;
 const UpdateJobCard = () => {
     const navigate = useNavigate();
     const params = useParams();
-    const [title, setTitle] = useState("");
-    const [text, setText] = useState("");
-    const [image, setImage] = useState(null);
-    const [id, setId] = useState("");
-    const [imageUrl, setImageUrl] = useState("");
+    const [title, setTitle] = useState('');
+    const [text, setText] = useState('');
+    const [date, setDate] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [id, setId] = useState("");
 
     useEffect(() => {
         const getSingleCard = async () => {
             try {
                 const { data } = await axios.get(`${process.env.REACT_APP_API}/api/v1/job-cards/get-cards/${params.id}`);
-                const { title, text, _id } = data.cardsData;
+                const { title, text, date, _id } = data.cardsData;
                 setTitle(title);
                 setText(text);
-                setImageUrl(`${process.env.REACT_APP_API}/api/v1/job-cards/card-photo/${_id}
+                setId(_id)
+                setDate(new Date(date));
 
-                `);
-                setId(_id);
+                // Check if current date is after expiration date, if yes, delete the card
+                const currentDate = new Date();
+                console.log("Date")
+                console.log(currentDate)
+                console.log("dodo")
+                console.log(new Date(date))
+                if (currentDate > new Date(date)) {
+                    handleDelete();
+                }
             } catch (err) {
-                console.error("Error fetching card:", err);
+                console.error('Error fetching card:', err);
             }
-        }
+        };
         getSingleCard();
     }, [params.id]);
-
-    const handleImageUpload = (e) => {
-        const selectedImage = e.target.files[0];
-        setImage(selectedImage);
-        const imageUrl = URL.createObjectURL(selectedImage);
-        setImageUrl(imageUrl);
-    }
 
     const handleUpdate = async () => {
         try {
@@ -47,23 +49,27 @@ const UpdateJobCard = () => {
             const formData = new FormData();
             formData.append('title', title);
             formData.append('text', text);
-            if (image) {
-                formData.append('image', image);
+            if (date) {
+                formData.append('date', date.toISOString());
             }
-            const { data } = await axios.put(`${process.env.REACT_APP_API}/api/v1/job-cards/update-cards/${id}`, formData);
+            const { data } = await axios.put(`${process.env.REACT_APP_API}/api/v1/job-cards/update-cards/${params.id}`, formData);
             if (data.success) {
-                alert("Card Updated Successfully");
-                navigate('/dashboard-admin/get-home-card'); // Redirect after successful update
+                alert('Card Updated Successfully');
+                navigate('/dashboard-admin/get-job-card'); // Redirect after successful update
             } else {
-                alert("Failed to update card");
+                alert('Failed to update card');
             }
         } catch (error) {
-            console.error("Error updating card:", error);
+            console.error('Error updating card:', error);
             alert('Something went wrong');
         } finally {
             setLoading(false);
         }
-    }
+    };
+
+    const handleDateChange = date => {
+        setDate(date);
+    };
 
     const handleDelete = async () => {
         try {
@@ -83,6 +89,7 @@ const UpdateJobCard = () => {
         }
     }
 
+
     return (
         <Layout title={'Update product'}>
             <div className='fluid-container m-3 p-3'>
@@ -94,31 +101,36 @@ const UpdateJobCard = () => {
                         <h1>Update Cards</h1>
                         <div className='m-1 w-75'>
                             <div className='mb-3'>
-                                <label className='btn btn-outline-secondary'>
-                                    {image ? image.name : "Upload Photo"}
-                                    <input
-                                        type='file'
-                                        name='photo'
-                                        accept='image/*'
-                                        onChange={handleImageUpload}
-                                        hidden
-                                    />
-                                </label>
+                                <input
+                                    type='text'
+                                    placeholder='Enter Name of Product'
+                                    className='form-control'
+                                    value={title}
+                                    onChange={e => setTitle(e.target.value)}
+                                />
                             </div>
                             <div className='mb-3'>
-                                <div className='text-center'>
-                                    <img src={imageUrl} alt="card-photo" height={'200px'} className='img img-responsive' />
-                                </div>
+                                <textarea
+                                    type='text'
+                                    placeholder='Enter Text of Product'
+                                    className='form-control'
+                                    value={text}
+                                    onChange={e => setText(e.target.value)}
+                                    style={{ resize: 'none', minHeight: '100px', maxHeight: '200px' }}
+                                />
                             </div>
                             <div className='mb-3'>
-                                <input type='text' placeholder='Enter Name of Product' className='form-control' value={title} onChange={(e) => setTitle(e.target.value)} />
-                            </div>
-                            <div className='mb-3'>
-                                <textarea type='text' placeholder='Enter Text of Product' className='form-control' value={text} onChange={(e) => setText(e.target.value)} style={{ resize: 'none', minHeight: '100px', maxHeight: '200px' }} />
+                                <DatePicker
+                                    className='form-control'
+                                    selected={date}
+                                    onChange={handleDateChange}
+                                    dateFormat='yyyy-MM-dd'
+                                    placeholderText='Select a date'
+                                />
                             </div>
                             <div className='mb-3'>
                                 <button className='btn btn-primary' onClick={handleUpdate} disabled={loading}>
-                                    {loading ? "Updating..." : "Update Product"}
+                                    {loading ? 'Updating...' : 'Update Product'}
                                 </button>
                             </div>
                             <div className='mb-3'>
@@ -131,7 +143,7 @@ const UpdateJobCard = () => {
                 </div>
             </div>
         </Layout>
-    )
-}
+    );
+};
 
 export default UpdateJobCard;

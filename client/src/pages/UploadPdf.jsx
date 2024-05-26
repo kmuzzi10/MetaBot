@@ -20,6 +20,7 @@ const UploadPdf = () => {
     const [skills, setSkills] = useState('');
     const [education, setEducation] = useState('');
     const [file, setFile] = useState('');
+    const [coverLetter, setCoverLetter] = useState(''); // State for cover letter
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState({});
     const [cards, setCards] = useState("");
@@ -61,6 +62,7 @@ const UploadPdf = () => {
         if (!skills) errors.skills = 'Please list your skills';
         if (!education) errors.education = 'Education details are required';
         if (!file) errors.file = 'File is required';
+        if (!coverLetter) errors.coverLetter = 'Cover letter is required';
         return errors;
     };
 
@@ -74,9 +76,11 @@ const UploadPdf = () => {
         formData.append('skills', skills);
         formData.append('education', education);
         formData.append('file', file);
+        formData.append('coverLetter', coverLetter); // Append cover letter to form data
         formData.append('areaOfInterest', cards);
 
         const formErrors = validateForm();
+        console.log("Form Errors:", formErrors); // Add this line for debugging
         if (Object.keys(formErrors).length !== 0) {
             setErrors(formErrors);
             return;
@@ -98,6 +102,7 @@ const UploadPdf = () => {
             setSkills('');
             setEducation('');
             setFile('');
+            setCoverLetter(''); // Reset cover letter field
             setErrors({});
             toast.success('Thank you for applying! We will contact you soon.', {
                 position: "top-center",
@@ -127,8 +132,6 @@ const UploadPdf = () => {
             });
 
         }
-
-
     };
 
     return (
@@ -228,7 +231,7 @@ const UploadPdf = () => {
                         whileFocus={{ scale: 1.1 }}
                     />
 
-                    <label htmlFor="file">File Upload (PDF only)</label>
+                    <label htmlFor="file">Upload Resume (PDF only)</label>
                     <motion.input
                         id="file"
                         type="file"
@@ -241,6 +244,19 @@ const UploadPdf = () => {
                     />
                     {errors.file && <p className="text-danger">{errors.file}</p>}
 
+                    <label htmlFor="coverLetter">Upload Cover Letter (PDF only)</label>
+                    <motion.input
+                        id="coverLetter"
+                        type="file"
+                        className="form-control mb-3"
+                        accept="application/pdf"
+                        onChange={(e) => setCoverLetter(e.target.files[0])}
+                        required
+                        whileHover={{ scale: 1.1 }}
+                        whileFocus={{ scale: 1.1 }}
+                    />
+                    {errors.coverLetter && <p className="text-danger">{errors.coverLetter}</p>}
+
                     <motion.button
                         type="submit"
                         whileHover={{ scale: 1.1 }}
@@ -251,6 +267,8 @@ const UploadPdf = () => {
                         {isSubmitting ? 'Submitting...' : 'Submit'}
                     </motion.button>
                 </motion.form>
+
+                {console.log("Errors:", errors)}
             </div>
             {/* Toast container */}
             <ToastContainer
