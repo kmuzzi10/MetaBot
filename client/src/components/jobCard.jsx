@@ -36,9 +36,7 @@ export default function JobCard(props) {
     }, [gettingCards]);
 
     const handleApplyClick = (id) => {
-
         navigate(`/upload-pdf/${id}`);
-
     };
 
     return (
@@ -52,6 +50,11 @@ export default function JobCard(props) {
                     transform: 'scale(1.05)',
                     boxShadow: '0 8px 16px rgba(0, 0, 0, 0.2)',
                 },
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                textAlign: 'center',
             }}
         >
             <CardActionArea>
@@ -65,7 +68,8 @@ export default function JobCard(props) {
                             color: '#333',
                         }}
                     >
-                        {props.title}
+                        Job Title <br /> 
+                        {props.title}<br /><br />
                     </Typography>
                     <Typography
                         variant="body2"
@@ -75,6 +79,7 @@ export default function JobCard(props) {
                             color: '#666',
                         }}
                     >
+                       <p style={{fontSize:'1rem',fontStyle:'oblique'}}> Job Description</p> <br /> <br />
                         {props.text}
                     </Typography>
                     <Typography

@@ -56,15 +56,17 @@ const CreateJobCard = () => {
                                     onChange={(e) => setTitle(e.target.value)}
                                 />
                             </div>
-                            <div className='mb-3' style={{ maxHeight: '200px', overflowY: 'auto' }}>
+                            <div className='mb-3' style={{ border: '1px solid #ccc', borderRadius: '5px', padding: '5px', backgroundColor: 'white', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
                                 <textarea
-                                    placeholder='Enter Text of Card'
+                                    placeholder='Enter Job Description'
                                     className='form-control'
                                     value={text}
                                     onChange={(e) => setText(e.target.value)}
-                                    style={{ resize: 'none', minHeight: '100px', maxHeight: '200px' }}
+                                    style={{ resize: 'vertical', minHeight: '300px', maxHeight: '300px', width: '100%', border: 'none', outline: 'none', fontSize: '18px', fontFamily: 'Arial, sans-serif', padding: '10px', lineHeight: '1.5', boxSizing: 'border-box' }}
                                 />
                             </div>
+
+
                             <div className='mb-3'>
                                 <DatePicker
                                     className='form-control'

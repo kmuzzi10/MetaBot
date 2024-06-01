@@ -9,7 +9,7 @@ const Header = () => {
         <div className="d-flex justify-content-center align-items-center">
           {/* Centered image and brand name */}
           <NavLink className="navbar-brand" to="/">
-            <img width={'200px'} height={'133px'} src={metabot} alt="" />
+            <img width={'230px'} height={'135px'} src={metabot} alt="" />
           </NavLink>
         </div>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

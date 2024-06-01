@@ -35,6 +35,7 @@ import JoinOurTeam from "./pages/JoinOurTeam";
 import GetJobCard from "./AdminPages/updateAndGetJobCards/GetJobCard";
 import UpdateJobCard from "./AdminPages/updateAndGetJobCards/UpdateJobCard";
 import CreateJobCard from "./AdminPages/pages/CreateJobCard";
+import JobListing from "./pages/JobListing";
 
 function App() {
   const location = useLocation();
@@ -58,6 +59,7 @@ function App() {
       <Route path="/all-projects" element={<AllProjects />} />
       <Route path="/join-our-team" element={<JoinOurTeam />} />
       <Route path="/upload-pdf/:id" element={<UploadPdf />} />
+      <Route path="/joblisting/:id" element={<JobListing />} />
       <Route path="/admin-login-metabot" element={<LoginForm />} />
       <Route path="/admin-login-metabot-forgot-password" element={<ForgotPassword/>} />
       {isLoggedIn && (

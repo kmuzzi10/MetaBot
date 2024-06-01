@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import moment from 'moment';
 
 import { useNavigate } from 'react-router-dom';
+import ListingComponentCard from '../components/ListingComponentCard';
 
 axios.defaults.withCredentials = true;
 const axiosInstance = axios.create({
@@ -68,7 +69,7 @@ const JoinOurTeam = () => {
                 <div style={{ textAlign: 'center' }} className='row'>
                     {cards.map((card) => (
                         <div key={card._id} className='col-lg-6 col-md-6 col-sm-12 mt-4'>
-                            <JobCard id={card._id} title={card.title} text={card.text} date={moment(card.date).format('MMMM Do, YYYY')} />
+                            <ListingComponentCard id={card._id} title={card.title} date={moment(card.date).format('MMMM Do, YYYY')} />
                             
                         </div>
                     ))}

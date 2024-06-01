@@ -1,0 +1,15 @@
+/* ListingComponentCard.css */
+
+.custom-card {
+    background-color: white;
+    color: black;
+}
+
+.custom-button {
+    background-color: #28a745 !important; /* Override MUI button background color */
+    color: black !important; /* Override MUI button text color */
+}
+
+.custom-button:hover {
+    background-color: #218838 !important; /* Override MUI button hover background color */
+}

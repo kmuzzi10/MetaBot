@@ -24,12 +24,12 @@ const Footer = () => {
             Metabot: 🌟 Innovating with Excellence! Crafting software solutions that redefine industry standards. 💻 Join us in shaping the future! 🚀
             </p>
             <p style={{fontSize:'1rem',paddingTop:'20px'}}>
-              EMAIL : metabot.solutions@gmail.com || PHONE : +923325098238
+              EMAIL : info@metabotsolutions.com || PHONE : +923362529622
             </p>
           </section>
         </div>
         <div className="text-center p-3" style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)',fontSize:'1.2rem' }}>
-          © {year} <img width={'150px'} height={'150px'} src={metabot} alt='metabot' />
+          © Copyright {year} <img width={'150px'} height={'150px'} src={metabot} alt='metabot' />
           
         </div>
       </footer>

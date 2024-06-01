@@ -28,14 +28,14 @@ const UpdateJobCard = () => {
                 setDate(new Date(date));
 
                 // Check if current date is after expiration date, if yes, delete the card
-                const currentDate = new Date();
-                console.log("Date")
-                console.log(currentDate)
-                console.log("dodo")
-                console.log(new Date(date))
-                if (currentDate > new Date(date)) {
-                    handleDelete();
-                }
+                // const currentDate = new Date();
+                // console.log("Date")
+                // console.log(currentDate)
+                // console.log("dodo")
+                // console.log(new Date(date))
+                // if (currentDate > new Date(date)) {
+                //     handleDelete();
+                // }
             } catch (err) {
                 console.error('Error fetching card:', err);
             }
