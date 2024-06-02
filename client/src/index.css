@@ -376,7 +376,11 @@
     width: 50%;
     margin: auto;
   }
-
+  .dev{
+    text-align: center;
+    font-size: 1rem;
+    margin-top: 150px;
+  }
   
 }
 

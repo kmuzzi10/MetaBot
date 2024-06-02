@@ -4,7 +4,7 @@ import fs from "fs"
 export const createCardController = async (req, res) => {
     try {
         console.log('Reached in create card controller')
-        const { title, text ,date } = req.fields
+        const { title, text, date } = req.fields
         const { image } = req.files
 
         //validation
@@ -81,7 +81,24 @@ export const getSingleCardsController = async (req, res) => {
 
 export const getCardsController = async (req, res) => {
     try {
-        const cardsData = await CardModel.find({}).select("-image").sort({ createdAt: -1 })
+        const updatedCardsData = await CardModel.find({}).select("-image").sort({ createdAt: -1 });
+        const currentDate = new Date();
+
+        
+        for (const card of updatedCardsData) {
+            const cardDate = new Date(card.date);
+            const oneDayAfterCardDate = new Date(cardDate);
+            oneDayAfterCardDate.setDate(cardDate.getDate() + 1);
+            if (currentDate > oneDayAfterCardDate) {
+                // Delete the expired card
+                await CardModel.findByIdAndDelete(card._id);
+                console.log(`Deleted expired card with ID: ${card._id}`);
+            }
+        }
+
+        // Refetch the cardsData to ensure only valid cards are sent in response
+        const cardsData = await CardModel.find({}).select("-image").sort({ createdAt: -1 });
+
         res.status(200).send({
             success: true,
             message: "All card details",
@@ -126,7 +143,7 @@ export const cardPhotoController = async (req, res) => {
 export const updateCardController = async (req, res) => {
     try {
         console.log('Reached in update Card controller')
-        const { title, text ,date } = req.fields
+        const { title, text, date } = req.fields
         const { image } = req.files
 
         //validation
